@@ -1,0 +1,6 @@
+{
+  "name": "Money Tracker",
+  "description": "Android money tracker with Jetpack Compose UI, Room persistence, Dagger Hilt architecture, Firebase Authentication, and financial report charts.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
