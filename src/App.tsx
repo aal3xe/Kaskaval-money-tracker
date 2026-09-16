@@ -6,6 +6,7 @@ import { AuthDrawer, ChartStyle } from './components/AuthDrawer';
 import { FinancialCharts } from './components/FinancialCharts';
 import { TransactionList } from './components/TransactionList';
 import { AddTransactionModal } from './components/AddTransactionModal';
+import { PWAInstallBanner } from './components/PWAInstallBanner';
 import { Language, TRANSLATIONS } from './i18n';
 import {
   Wallet,
@@ -126,6 +127,9 @@ export function MoneyTrackerApp() {
           </button>
         </div>
       </header>
+
+      {/* PWA Mobile Fullscreen Install Banner */}
+      <PWAInstallBanner lang={lang} />
 
       {/* Main Content Layout */}
       <main className="max-w-5xl mx-auto">
