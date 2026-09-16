@@ -10,7 +10,8 @@ import {
   writeBatch
 } from 'firebase/firestore';
 
-const ROOM_STORAGE_KEY = 'money_tracker_room_db_v1';
+const ROOM_STORAGE_KEY = 'moneyfly_room_db_v2';
+const CLEAN_MIGRATION_FLAG = 'moneyfly_cleared_initial_mock_v2';
 
 export class RoomDatabaseEmulator {
   private static instance: RoomDatabaseEmulator;
@@ -30,16 +31,26 @@ export class RoomDatabaseEmulator {
 
   private loadFromLocalStorage(): void {
     try {
+      // One-time cleanup of legacy demo/test data so user starts completely clean at 0
+      const isCleaned = localStorage.getItem(CLEAN_MIGRATION_FLAG);
+      if (!isCleaned) {
+        localStorage.removeItem('money_tracker_room_db_v1');
+        localStorage.setItem(CLEAN_MIGRATION_FLAG, 'true');
+        this.memoryCache = [];
+        this.persist();
+        return;
+      }
+
       const stored = localStorage.getItem(ROOM_STORAGE_KEY);
       if (stored) {
         this.memoryCache = JSON.parse(stored);
       } else {
-        this.memoryCache = [...INITIAL_ROOM_TRANSACTIONS];
+        this.memoryCache = [];
         this.persist();
       }
     } catch (e) {
       console.warn('LocalStorage unavailable, using in-memory SQLite store', e);
-      this.memoryCache = [...INITIAL_ROOM_TRANSACTIONS];
+      this.memoryCache = [];
     }
   }
 

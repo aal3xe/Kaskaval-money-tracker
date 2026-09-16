@@ -3,6 +3,7 @@ import { Transaction } from '../types';
 import { SwipeableTransactionItem } from './SwipeableTransactionItem';
 import { Language, TRANSLATIONS } from '../i18n';
 import { SlidersHorizontal } from 'lucide-react';
+import { CurrencyCode } from '../utils/currency';
 
 interface TransactionListProps {
   transactions: Transaction[];
@@ -10,6 +11,7 @@ interface TransactionListProps {
   selectedFilter: string;
   onFilterChange: (filter: string) => void;
   lang: Language;
+  currency: CurrencyCode;
 }
 
 export const TransactionList: React.FC<TransactionListProps> = ({
@@ -18,6 +20,7 @@ export const TransactionList: React.FC<TransactionListProps> = ({
   selectedFilter,
   onFilterChange,
   lang,
+  currency,
 }) => {
   const t = TRANSLATIONS[lang];
 
@@ -80,6 +83,7 @@ export const TransactionList: React.FC<TransactionListProps> = ({
               transaction={tx}
               onDelete={onDelete}
               lang={lang}
+              currency={currency}
             />
           ))}
         </div>

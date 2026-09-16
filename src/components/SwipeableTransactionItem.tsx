@@ -3,17 +3,20 @@ import { Transaction } from '../types';
 import { CategoryIcon } from './CategoryIcon';
 import { Trash2, CloudCheck, CloudOff } from 'lucide-react';
 import { Language, TRANSLATIONS } from '../i18n';
+import { CurrencyCode, formatMoney } from '../utils/currency';
 
 interface SwipeableTransactionItemProps {
   transaction: Transaction;
   onDelete: (id: string) => void;
   lang: Language;
+  currency: CurrencyCode;
 }
 
 export const SwipeableTransactionItem: React.FC<SwipeableTransactionItemProps> = ({
   transaction,
   onDelete,
   lang,
+  currency,
 }) => {
   const t = TRANSLATIONS[lang];
   const [offsetX, setOffsetX] = useState(0);
@@ -91,6 +94,7 @@ export const SwipeableTransactionItem: React.FC<SwipeableTransactionItemProps> =
   const swipeProgress = Math.min(1, Math.abs(offsetX) / DISMISS_THRESHOLD);
   const isSwipedLeft = offsetX < -10;
   const isSwipedRight = offsetX > 10;
+  const isSwiping = isDragging || Math.abs(offsetX) > 0.5;
 
   return (
     <div
@@ -100,7 +104,11 @@ export const SwipeableTransactionItem: React.FC<SwipeableTransactionItemProps> =
     >
       {/* Background Reveal (Gmail-style Red Trash indicator from both sides) */}
       <div
-        className={`absolute inset-0 flex items-center justify-between px-5 bg-rose-600 text-white rounded-xl transition-colors ${
+        style={{
+          opacity: isSwiping ? Math.min(1, Math.abs(offsetX) / 15) : 0,
+          pointerEvents: isSwiping ? 'auto' : 'none',
+        }}
+        className={`absolute inset-0 flex items-center justify-between px-5 bg-rose-600 text-white rounded-xl transition-all duration-150 ${
           swipeProgress >= 0.8 ? 'bg-rose-700' : 'bg-rose-500'
         }`}
       >
@@ -190,7 +198,7 @@ export const SwipeableTransactionItem: React.FC<SwipeableTransactionItemProps> =
               isExpense ? 'text-slate-900' : 'text-emerald-600'
             }`}
           >
-            {isExpense ? '-' : '+'}${transaction.amount.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+            {isExpense ? '-' : '+'}{formatMoney(transaction.amount, currency)}
           </span>
 
           <button

@@ -5,6 +5,7 @@ import { DEFAULT_CATEGORIES } from '../data/initialData';
 import { CategoryIcon } from './CategoryIcon';
 import { X, Check } from 'lucide-react';
 import { Language, TRANSLATIONS } from '../i18n';
+import { CurrencyCode, CURRENCIES } from '../utils/currency';
 
 interface AddTransactionModalProps {
   isOpen: boolean;
@@ -12,6 +13,7 @@ interface AddTransactionModalProps {
   onSave: (transaction: Omit<Transaction, 'id' | 'userId'>) => void;
   lang: Language;
   defaultType?: TransactionType;
+  currency: CurrencyCode;
 }
 
 export const AddTransactionModal: React.FC<AddTransactionModalProps> = ({
@@ -20,6 +22,7 @@ export const AddTransactionModal: React.FC<AddTransactionModalProps> = ({
   onSave,
   lang,
   defaultType = 'expense',
+  currency,
 }) => {
   const t = TRANSLATIONS[lang];
   const [type, setType] = useState<TransactionType>(defaultType);
@@ -162,23 +165,44 @@ export const AddTransactionModal: React.FC<AddTransactionModalProps> = ({
               {/* Amount input */}
               <div>
                 <label className="block text-xs font-medium text-slate-500 mb-1">
-                  {t.amount} ($ / RON)
+                  {t.amount} ({CURRENCIES[currency]?.code || 'RON'})
                 </label>
                 <div className="relative">
-                  <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-xl font-bold text-slate-400">
-                    $
-                  </span>
-                  <input
-                    id="input-transaction-amount"
-                    type="number"
-                    step="0.01"
-                    required
-                    placeholder="0.00"
-                    value={amount}
-                    onChange={e => setAmount(e.target.value)}
-                    className="w-full pl-8 pr-4 py-2 text-2xl font-bold text-slate-900 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
-                    autoFocus
-                  />
+                  {CURRENCIES[currency]?.position === 'prefix' ? (
+                    <>
+                      <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-xl font-bold text-slate-400 pointer-events-none">
+                        {CURRENCIES[currency]?.symbol}
+                      </span>
+                      <input
+                        id="input-transaction-amount"
+                        type="number"
+                        step="0.01"
+                        required
+                        placeholder="0.00"
+                        value={amount}
+                        onChange={e => setAmount(e.target.value)}
+                        className="w-full pl-9 pr-4 py-2 text-2xl font-bold text-slate-900 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                        autoFocus
+                      />
+                    </>
+                  ) : (
+                    <>
+                      <input
+                        id="input-transaction-amount"
+                        type="number"
+                        step="0.01"
+                        required
+                        placeholder="0.00"
+                        value={amount}
+                        onChange={e => setAmount(e.target.value)}
+                        className="w-full pl-4 pr-16 py-2 text-2xl font-bold text-slate-900 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                        autoFocus
+                      />
+                      <span className="absolute right-3.5 top-1/2 -translate-y-1/2 text-sm font-bold text-slate-400 pointer-events-none">
+                        {CURRENCIES[currency]?.symbol}
+                      </span>
+                    </>
+                  )}
                 </div>
               </div>
 

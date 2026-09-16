@@ -3,6 +3,7 @@ import { Transaction } from '../types';
 import { Language, TRANSLATIONS } from '../i18n';
 import { TrendingUp, TrendingDown, Calendar, ArrowLeft } from 'lucide-react';
 import { ChartStyle } from './AuthDrawer';
+import { CurrencyCode, formatMoney } from '../utils/currency';
 
 interface FinancialChartsProps {
   transactions: Transaction[];
@@ -10,6 +11,7 @@ interface FinancialChartsProps {
   totalIncome: number;
   totalExpense: number;
   chartStyle: ChartStyle;
+  currency: CurrencyCode;
 }
 
 export const FinancialCharts: React.FC<FinancialChartsProps> = ({
@@ -18,6 +20,7 @@ export const FinancialCharts: React.FC<FinancialChartsProps> = ({
   totalIncome,
   totalExpense,
   chartStyle,
+  currency,
 }) => {
   const t = TRANSLATIONS[lang];
   const [showTrend, setShowTrend] = useState(false);
@@ -127,13 +130,13 @@ export const FinancialCharts: React.FC<FinancialChartsProps> = ({
                   <div className="w-full flex items-end justify-center gap-1 h-32 bg-slate-50 rounded-t-md p-0.5">
                     {/* Income bar */}
                     <div
-                      title={`${t.income}: $${item.income.toFixed(2)}`}
+                      title={`${t.income}: ${formatMoney(item.income, currency)}`}
                       style={{ height: `${incHeightPct}%` }}
                       className="w-2.5 sm:w-3 bg-emerald-500 rounded-t-sm transition-all duration-300"
                     />
                     {/* Expense bar */}
                     <div
-                      title={`${t.expenses}: $${item.expense.toFixed(2)}`}
+                      title={`${t.expenses}: ${formatMoney(item.expense, currency)}`}
                       style={{ height: `${expHeightPct}%` }}
                       className="w-2.5 sm:w-3 bg-rose-500 rounded-t-sm transition-all duration-300"
                     />
@@ -218,10 +221,7 @@ export const FinancialCharts: React.FC<FinancialChartsProps> = ({
                   isPositive ? 'text-emerald-600' : 'text-rose-600'
                 }`}
               >
-                {isPositive ? '+' : '-'}${Math.abs(difference).toLocaleString(undefined, {
-                  minimumFractionDigits: 2,
-                  maximumFractionDigits: 2,
-                })}
+                {isPositive ? '+' : '-'}{formatMoney(Math.abs(difference), currency)}
               </span>
               <div
                 className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold ${
@@ -252,7 +252,7 @@ export const FinancialCharts: React.FC<FinancialChartsProps> = ({
                     <span className="text-slate-700 truncate font-medium">{cat.name}</span>
                   </div>
                   <div className="flex items-center gap-2 shrink-0">
-                    <span className="font-semibold text-slate-800">${cat.amount.toFixed(2)}</span>
+                    <span className="font-semibold text-slate-800">{formatMoney(cat.amount, currency)}</span>
                     <span className="text-[10px] text-slate-400 w-7 text-right">{pct}%</span>
                   </div>
                 </div>
@@ -271,7 +271,7 @@ export const FinancialCharts: React.FC<FinancialChartsProps> = ({
             <div>
               <span className="text-xs text-slate-500 font-medium block">{t.netDifference} (Venit - Cheltuieli)</span>
               <span className={`text-xl font-bold ${isPositive ? 'text-emerald-600' : 'text-rose-600'}`}>
-                {isPositive ? '+' : '-'}${Math.abs(difference).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                {isPositive ? '+' : '-'}{formatMoney(Math.abs(difference), currency)}
               </span>
             </div>
             <div className={`px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1 ${
@@ -298,12 +298,12 @@ export const FinancialCharts: React.FC<FinancialChartsProps> = ({
               <div
                 style={{ width: `${totalVolume > 0 ? (totalIncome / totalVolume) * 100 : 50}%` }}
                 className="h-full bg-emerald-500 rounded-l-full transition-all duration-500"
-                title={`${t.income}: $${totalIncome.toFixed(2)}`}
+                title={`${t.income}: ${formatMoney(totalIncome, currency)}`}
               />
               <div
                 style={{ width: `${totalVolume > 0 ? (totalExpense / totalVolume) * 100 : 50}%` }}
                 className="h-full bg-rose-500 rounded-r-full transition-all duration-500"
-                title={`${t.expenses}: $${totalExpense.toFixed(2)}`}
+                title={`${t.expenses}: ${formatMoney(totalExpense, currency)}`}
               />
             </div>
           </div>
@@ -318,7 +318,7 @@ export const FinancialCharts: React.FC<FinancialChartsProps> = ({
                   <div key={idx} className="space-y-1">
                     <div className="flex justify-between text-xs">
                       <span className="font-medium text-slate-700">{cat.name}</span>
-                      <span className="font-semibold text-slate-900">${cat.amount.toFixed(2)} ({pct}%)</span>
+                      <span className="font-semibold text-slate-900">{formatMoney(cat.amount, currency)} ({pct}%)</span>
                     </div>
                     <div className="w-full h-2 bg-slate-100 rounded-full overflow-hidden">
                       <div
@@ -347,7 +347,7 @@ export const FinancialCharts: React.FC<FinancialChartsProps> = ({
           <div className="overflow-hidden">
             <span className="text-[11px] text-emerald-700 font-medium block truncate">{t.income}</span>
             <span className="text-sm sm:text-base font-bold text-emerald-700 tracking-tight">
-              +${totalIncome.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+              +{formatMoney(totalIncome, currency)}
             </span>
           </div>
         </div>
@@ -360,7 +360,7 @@ export const FinancialCharts: React.FC<FinancialChartsProps> = ({
           <div className="overflow-hidden">
             <span className="text-[11px] text-rose-700 font-medium block truncate">{t.expenses}</span>
             <span className="text-sm sm:text-base font-bold text-rose-700 tracking-tight">
-              -${totalExpense.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+              -{formatMoney(totalExpense, currency)}
             </span>
           </div>
         </div>
