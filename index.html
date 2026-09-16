@@ -3,17 +3,28 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Money Tracker</title>
-    <meta name="description" content="Android money tracker with Jetpack Compose UI, Room persistence, Dagger Hilt architecture, Firebase Authentication, and financial report charts." />
-    <meta property="og:title" content="Money Tracker" />
-    <meta property="og:description" content="Android money tracker with Jetpack Compose UI, Room persistence, Dagger Hilt architecture, Firebase Authentication, and financial report charts." />
+    <title>MoneyFly</title>
+    <meta name="description" content="MoneyFly - Personal finance tracker with Room DB, Firebase sync, and Jetpack Compose aesthetic." />
+    <meta property="og:title" content="MoneyFly" />
+    <meta property="og:description" content="MoneyFly - Personal finance tracker with Room DB, Firebase sync, and Jetpack Compose aesthetic." />
     <meta property="og:type" content="website" />
     <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" type="image/png" href="/pwa-192x192.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/manifest.json" />
     <meta name="theme-color" content="#4F46E5" />
+    <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-    <meta name="apple-mobile-web-app-title" content="Money Tracker" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="MoneyFly" />
+    <script>
+      // Capture PWA installation prompt as early as possible
+      window.addEventListener('beforeinstallprompt', function (e) {
+        e.preventDefault();
+        window.__deferredPrompt = e;
+        window.dispatchEvent(new CustomEvent('pwa-prompt-ready'));
+      });
+    </script>
   </head>
   <body>
     <div id="root"></div>

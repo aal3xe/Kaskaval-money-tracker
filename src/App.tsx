@@ -106,9 +106,11 @@ export function MoneyTrackerApp() {
       {/* Top Header Bar */}
       <header className="max-w-5xl mx-auto mb-4 flex items-center justify-between gap-3 px-2">
         <div className="flex items-center gap-2.5">
-          <div className="w-9 h-9 rounded-xl bg-indigo-600 flex items-center justify-center text-white shadow-md">
-            <Wallet size={20} />
-          </div>
+          <img
+            src="/pwa-192x192.png"
+            alt="MoneyFly"
+            className="w-9 h-9 rounded-xl shadow-md object-cover border border-slate-200/60"
+          />
           <div>
             <h1 className="text-base font-bold text-slate-900 tracking-tight">{t.appTitle}</h1>
           </div>

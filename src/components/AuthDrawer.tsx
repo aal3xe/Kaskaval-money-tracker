@@ -12,7 +12,9 @@ import {
   Globe,
   CircleDot,
   BarChart3,
-  PieChart
+  PieChart,
+  Download,
+  Smartphone
 } from 'lucide-react';
 import { Language, TRANSLATIONS } from '../i18n';
 
@@ -288,6 +290,42 @@ export const AuthDrawer: React.FC<AuthDrawerProps> = ({
                 <span>🇬🇧 English</span>
               </button>
             </div>
+          </div>
+
+          {/* Install MoneyFly native button */}
+          <div className="mt-6 pt-5 border-t border-slate-200 dark:border-slate-800">
+            <button
+              onClick={async () => {
+                const prompt = (window as unknown as { __deferredPrompt?: { prompt: () => Promise<void> } }).__deferredPrompt;
+                if (prompt) {
+                  try {
+                    await prompt.prompt();
+                  } catch (e) {
+                    console.warn(e);
+                  }
+                } else {
+                  alert(
+                    lang === 'ro'
+                      ? 'Dacă ești în Chrome pe telefon: apasă pe cele 3 puncte (⋮) din dreapta-sus a ecranului și alege „Instalează aplicația” (sau „Adaugă pe ecranul de pornire”).'
+                      : 'In Chrome on phone: tap the 3 dots (⋮) in top-right and select "Install app".'
+                  );
+                }
+              }}
+              className="w-full flex items-center justify-between p-3.5 bg-gradient-to-r from-emerald-600 to-indigo-600 text-white rounded-2xl shadow-sm hover:opacity-95 active:scale-98 transition-all"
+            >
+              <div className="flex items-center gap-2.5">
+                <img src="/pwa-192x192.png" alt="MoneyFly" className="w-8 h-8 rounded-xl object-cover border border-white/30" />
+                <div className="text-left">
+                  <p className="text-xs font-bold leading-tight">
+                    {lang === 'ro' ? 'Instalează MoneyFly' : 'Install MoneyFly'}
+                  </p>
+                  <p className="text-[10px] text-emerald-100">
+                    {lang === 'ro' ? 'Ecran complet fără bara Chrome' : 'Fullscreen native app experience'}
+                  </p>
+                </div>
+              </div>
+              <Download size={16} className="text-white shrink-0" />
+            </button>
           </div>
         </div>
       </div>

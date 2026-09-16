@@ -284,7 +284,7 @@ fun DashboardScreen(
 
     Scaffold(
         topBar = {
-            TopAppBar(title = { Text("Money Tracker") })
+            TopAppBar(title = { Text("MoneyFly") })
         },
         floatingActionButton = {
             FloatingActionButton(onClick = onNavigateToAdd) {
