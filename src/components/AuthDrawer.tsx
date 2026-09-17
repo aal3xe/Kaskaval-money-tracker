@@ -14,7 +14,6 @@ import {
   BarChart3,
   PieChart,
   Download,
-  Smartphone,
   Coins,
   Trash2,
   AlertTriangle
@@ -79,60 +78,60 @@ export const AuthDrawer: React.FC<AuthDrawerProps> = ({
       {/* Backdrop */}
       <div
         id="auth-drawer-backdrop"
-        className="fixed inset-0 bg-slate-900/50 backdrop-blur-xs transition-opacity duration-300"
+        className="fixed inset-0 bg-black/75 backdrop-blur-xs transition-opacity duration-300"
         onClick={onClose}
       />
 
       {/* Drawer Panel */}
       <div
         id="auth-drawer-panel"
-        className="relative w-full max-w-sm bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-100 shadow-2xl h-full flex flex-col p-6 z-10 transition-transform duration-300 overflow-y-auto"
+        className="relative w-full max-w-sm bg-[#0E1422] border-l border-[#222E42] text-slate-100 shadow-2xl h-full flex flex-col p-6 z-10 transition-transform duration-300 overflow-y-auto"
       >
         {/* Header */}
-        <div className="flex items-center justify-between pb-4 border-b border-slate-200 dark:border-slate-800">
+        <div className="flex items-center justify-between pb-4 border-b border-[#222E42]">
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-xl bg-indigo-600 text-white flex items-center justify-center font-bold">
+            <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-[#F3C77C] to-[#E5B869] text-slate-950 flex items-center justify-center font-bold shadow-xs">
               <ShieldCheck size={18} />
             </div>
             <div>
-              <h2 className="text-base font-bold text-slate-900 dark:text-white">
-                {lang === 'ro' ? 'Cont & Sincronizare' : 'Account & Sync'}
+              <h2 className="text-base font-bold text-white tracking-tight">
+                {lang === 'ro' ? 'Cont & Setări' : 'Account & Settings'}
               </h2>
             </div>
           </div>
           <button
             id="close-auth-drawer-btn"
             onClick={onClose}
-            className="p-1.5 rounded-xl text-slate-400 hover:text-slate-700 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+            className="p-1.5 rounded-xl text-slate-400 hover:text-white hover:bg-white/10 transition-colors"
           >
             <X size={20} />
           </button>
         </div>
 
         {/* User Card */}
-        <div className="py-6">
+        <div className="py-5">
           {user ? (
-            <div className="bg-slate-50 dark:bg-slate-800/60 rounded-2xl p-4 border border-slate-200 dark:border-slate-700/60">
+            <div className="bg-[#131926] rounded-2xl p-4 border border-[#222E42]">
               <div className="flex items-center gap-3 mb-3">
                 {user.photoURL ? (
                   <img
                     src={user.photoURL}
                     alt={user.displayName || 'User'}
-                    className="w-12 h-12 rounded-full border-2 border-indigo-500 shadow-xs"
+                    className="w-12 h-12 rounded-full border-2 border-[#F3C77C] shadow-md object-cover"
                   />
                 ) : (
-                  <div className="w-12 h-12 rounded-full bg-indigo-100 dark:bg-indigo-900/40 text-indigo-600 dark:text-indigo-400 flex items-center justify-center font-bold">
-                    <UserIcon size={24} />
+                  <div className="w-12 h-12 rounded-full bg-[#1A2337] border border-[#F3C77C]/60 text-[#F3C77C] flex items-center justify-center font-bold text-lg">
+                    {user?.displayName ? user.displayName.charAt(0).toUpperCase() : <UserIcon size={22} />}
                   </div>
                 )}
                 <div className="overflow-hidden">
-                  <div className="font-semibold text-slate-900 dark:text-white text-sm truncate">
+                  <div className="font-semibold text-white text-sm truncate">
                     {user.displayName || (user.isAnonymous ? t.anonymousSession : user.email?.split('@')[0])}
                   </div>
-                  <div className="text-xs text-slate-500 dark:text-slate-400 truncate">
+                  <div className="text-xs text-slate-400 truncate">
                     {user.email || (user.isAnonymous ? (lang === 'ro' ? 'Stocare locală activă' : 'Local storage active') : '')}
                   </div>
-                  <div className="mt-1 flex items-center gap-1.5 text-[11px] font-medium text-emerald-600 dark:text-emerald-400">
+                  <div className="mt-1 flex items-center gap-1.5 text-[11px] font-medium text-[#2DD4BF]">
                     <CheckCircle2 size={12} />
                     <span>{user.isAnonymous ? t.anonymousSession : t.firebaseSynced}</span>
                   </div>
@@ -141,12 +140,12 @@ export const AuthDrawer: React.FC<AuthDrawerProps> = ({
 
               {/* Sync Actions for Google User */}
               {user && !user.isAnonymous && (
-                <div className="pt-3 border-t border-slate-200 dark:border-slate-700 flex flex-col gap-2">
+                <div className="pt-3 border-t border-[#222E42] flex flex-col gap-2">
                   <button
                     id="drawer-sync-now-btn"
                     onClick={syncNow}
                     disabled={syncStatus === 'syncing'}
-                    className="w-full flex items-center justify-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2 px-3 rounded-xl transition-colors text-xs"
+                    className="w-full flex items-center justify-center gap-2 bg-[#F3C77C] hover:bg-[#E5B869] text-slate-950 font-bold py-2 px-3 rounded-xl transition-colors text-xs"
                   >
                     <RefreshCw size={14} className={syncStatus === 'syncing' ? 'animate-spin' : ''} />
                     <span>
@@ -167,7 +166,7 @@ export const AuthDrawer: React.FC<AuthDrawerProps> = ({
                 <button
                   id="drawer-logout-btn"
                   onClick={logout}
-                  className="w-full flex items-center justify-center gap-2 bg-slate-200/80 dark:bg-slate-700 hover:bg-slate-300 dark:hover:bg-slate-600 text-slate-700 dark:text-slate-200 font-medium py-2 px-3 rounded-xl transition-colors text-xs"
+                  className="w-full flex items-center justify-center gap-2 bg-[#1A2337] hover:bg-[#25324E] text-slate-300 hover:text-white font-medium py-2 px-3 rounded-xl border border-[#26354D] transition-colors text-xs"
                 >
                   <LogOut size={14} />
                   <span>{t.signOut}</span>
@@ -176,17 +175,17 @@ export const AuthDrawer: React.FC<AuthDrawerProps> = ({
             </div>
           ) : (
             <div className="space-y-4">
-              <div className="bg-slate-50 dark:bg-slate-800/60 p-4 rounded-2xl border border-slate-200 dark:border-slate-700 text-center">
-                <div className="w-12 h-12 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300 flex items-center justify-center mx-auto mb-2">
+              <div className="bg-[#131926] p-4 rounded-2xl border border-[#222E42] text-center">
+                <div className="w-12 h-12 rounded-full bg-[#1A2337] text-slate-400 flex items-center justify-center mx-auto mb-2 border border-[#2B3950]">
                   <UserIcon size={22} />
                 </div>
-                <h3 className="font-semibold text-slate-900 dark:text-white text-sm">
+                <h3 className="font-semibold text-white text-sm">
                   {lang === 'ro' ? 'Niciun cont conectat' : 'Not signed in'}
                 </h3>
-                <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
+                <p className="text-xs text-slate-400 mt-1">
                   {lang === 'ro'
                     ? 'Conectează-te cu Google pentru a salva tranzacțiile în Cloud sau continuă ca oaspete.'
-                    : 'Sign in with Google to backup transactions to the Cloud or continue as guest.'}
+                    : 'Sign in with Google to backup transactions to Cloud or continue as guest.'}
                 </p>
               </div>
 
@@ -196,7 +195,7 @@ export const AuthDrawer: React.FC<AuthDrawerProps> = ({
                   id="drawer-login-google-btn"
                   onClick={handleGoogleLogin}
                   disabled={isProcessing}
-                  className="w-full flex items-center justify-center gap-2 py-2.5 px-4 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-xl shadow-xs transition-colors text-xs"
+                  className="w-full flex items-center justify-center gap-2 py-2.5 px-4 bg-gradient-to-r from-[#F3C77C] to-[#E5B869] text-slate-950 font-bold rounded-xl shadow-xs transition-colors text-xs"
                 >
                   <LogIn size={15} />
                   <span>{t.googleSignIn}</span>
@@ -206,9 +205,9 @@ export const AuthDrawer: React.FC<AuthDrawerProps> = ({
                   id="drawer-login-guest-btn"
                   onClick={handleGuestLogin}
                   disabled={isProcessing}
-                  className="w-full flex items-center justify-center gap-2 py-2.5 px-4 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 font-medium rounded-xl border border-slate-200 dark:border-slate-700 transition-colors text-xs"
+                  className="w-full flex items-center justify-center gap-2 py-2.5 px-4 bg-[#182030] hover:bg-[#222E44] text-slate-200 font-medium rounded-xl border border-[#26364E] transition-colors text-xs"
                 >
-                  <UserIcon size={15} className="text-indigo-500" />
+                  <UserIcon size={15} className="text-[#F3C77C]" />
                   <span>{t.guestMode}</span>
                 </button>
               </div>
@@ -216,16 +215,16 @@ export const AuthDrawer: React.FC<AuthDrawerProps> = ({
           )}
 
           {authError && (
-            <div className="mt-4 p-3 bg-rose-500/10 border border-rose-500/20 rounded-xl text-rose-600 dark:text-rose-400 text-xs flex flex-col gap-1.5">
+            <div className="mt-4 p-3 bg-rose-950/40 border border-rose-800/50 rounded-xl text-rose-300 text-xs flex flex-col gap-1.5">
               <div className="flex items-center gap-2 font-semibold">
-                <ShieldAlert size={15} className="shrink-0 text-rose-500" />
+                <ShieldAlert size={15} className="shrink-0 text-rose-400" />
                 <span>
                   {authError.includes('unauthorized-domain')
                     ? (lang === 'ro' ? 'Domeniu neautorizat în Firebase' : 'Unauthorized domain in Firebase')
                     : (lang === 'ro' ? 'Eroare de autentificare' : 'Authentication error')}
                 </span>
               </div>
-              <p className="text-[11px] leading-relaxed text-slate-600 dark:text-slate-300">
+              <p className="text-[11px] leading-relaxed text-slate-300">
                 {authError.includes('unauthorized-domain')
                   ? (lang === 'ro'
                     ? `Domeniul actual (${window.location.hostname}) trebuie adăugat în Firebase Console > Authentication > Settings > Authorized domains. Până atunci, folosește "Mod Oaspete" pentru funcționalitate completă!`
@@ -237,7 +236,7 @@ export const AuthDrawer: React.FC<AuthDrawerProps> = ({
                 <button
                   type="button"
                   onClick={handleGuestLogin}
-                  className="mt-1 py-1.5 px-2.5 bg-rose-500/20 hover:bg-rose-500/30 text-rose-700 dark:text-rose-300 rounded-lg font-medium text-[11px] text-center transition-colors"
+                  className="mt-1 py-1.5 px-2.5 bg-rose-500/20 hover:bg-rose-500/30 text-rose-200 rounded-lg font-medium text-[11px] text-center transition-colors"
                 >
                   {lang === 'ro' ? 'Activează Modul Oaspete acum' : 'Activate Guest Mode now'}
                 </button>
@@ -245,61 +244,14 @@ export const AuthDrawer: React.FC<AuthDrawerProps> = ({
             </div>
           )}
 
-          {/* Chart Display Preference inside Drawer */}
-          <div className="mt-6 pt-5 border-t border-slate-200 dark:border-slate-800">
-            <div className="flex items-center justify-between mb-2">
-              <span className="text-xs font-semibold text-slate-700 dark:text-slate-300 flex items-center gap-1.5">
-                <PieChart size={14} className="text-indigo-500" />
-                <span>{t.chartStyleSetting}</span>
-              </span>
-            </div>
-            <div className="flex flex-col gap-2">
-              <button
-                id="drawer-chart-categories-btn"
-                onClick={() => onChartStyleChange('categories')}
-                className={`p-2.5 rounded-xl text-xs font-semibold flex items-center justify-between transition-all border ${
-                  chartStyle === 'categories'
-                    ? 'bg-indigo-50 dark:bg-indigo-950/40 border-indigo-500 text-indigo-700 dark:text-indigo-300 shadow-2xs'
-                    : 'bg-slate-50 dark:bg-slate-800/60 border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:border-slate-300'
-                }`}
-              >
-                <div className="flex items-center gap-2">
-                  <CircleDot size={15} className={chartStyle === 'categories' ? 'text-indigo-600' : 'text-slate-400'} />
-                  <span>{t.chartStyleCategories}</span>
-                </div>
-                {chartStyle === 'categories' && (
-                  <span className="w-2 h-2 rounded-full bg-indigo-600" />
-                )}
-              </button>
-
-              <button
-                id="drawer-chart-linear-btn"
-                onClick={() => onChartStyleChange('linear')}
-                className={`p-2.5 rounded-xl text-xs font-semibold flex items-center justify-between transition-all border ${
-                  chartStyle === 'linear'
-                    ? 'bg-indigo-50 dark:bg-indigo-950/40 border-indigo-500 text-indigo-700 dark:text-indigo-300 shadow-2xs'
-                    : 'bg-slate-50 dark:bg-slate-800/60 border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:border-slate-300'
-                }`}
-              >
-                <div className="flex items-center gap-2">
-                  <BarChart3 size={15} className={chartStyle === 'linear' ? 'text-indigo-600' : 'text-slate-400'} />
-                  <span>{t.chartStyleLinear}</span>
-                </div>
-                {chartStyle === 'linear' && (
-                  <span className="w-2 h-2 rounded-full bg-indigo-600" />
-                )}
-              </button>
-            </div>
-          </div>
-
           {/* Currency Selection inside Drawer */}
-          <div className="mt-6 pt-5 border-t border-slate-200 dark:border-slate-800">
+          <div className="mt-6 pt-5 border-t border-[#222E42]">
             <div className="flex items-center justify-between mb-2">
-              <span className="text-xs font-semibold text-slate-700 dark:text-slate-300 flex items-center gap-1.5">
-                <Coins size={14} className="text-indigo-500" />
+              <span className="text-xs font-semibold text-slate-300 flex items-center gap-1.5">
+                <Coins size={14} className="text-[#F3C77C]" />
                 <span>{t.currencySetting}</span>
               </span>
-              <span className="text-[11px] font-bold text-indigo-600 bg-indigo-50 dark:bg-indigo-950/60 px-2 py-0.5 rounded-md">
+              <span className="text-[11px] font-bold text-[#F3C77C] bg-[#1A2337] px-2 py-0.5 rounded-md border border-[#2B3952]">
                 {currency} ({CURRENCIES[currency]?.symbol})
               </span>
             </div>
@@ -315,15 +267,15 @@ export const AuthDrawer: React.FC<AuthDrawerProps> = ({
                     onClick={() => onCurrencyChange(cCode)}
                     className={`p-2.5 rounded-xl text-xs font-semibold flex items-center justify-between transition-all border ${
                       isSelected
-                        ? 'bg-indigo-50 dark:bg-indigo-950/40 border-indigo-500 text-indigo-700 dark:text-indigo-300 shadow-2xs'
-                        : 'bg-slate-50 dark:bg-slate-800/60 border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:border-slate-300'
+                        ? 'bg-[#F3C77C]/15 border-[#F3C77C] text-[#F3C77C] shadow-xs'
+                        : 'bg-[#131926] border-[#222E42] text-slate-300 hover:border-[#354562]'
                     }`}
                   >
                     <div className="flex items-center gap-2">
                       <span className="text-base">{item.flag}</span>
                       <span>{cCode}</span>
                     </div>
-                    <span className="text-[11px] font-bold text-slate-400">
+                    <span className="text-[11px] font-mono text-slate-400">
                       {item.symbol}
                     </span>
                   </button>
@@ -333,21 +285,21 @@ export const AuthDrawer: React.FC<AuthDrawerProps> = ({
           </div>
 
           {/* Language Selection inside Drawer */}
-          <div className="mt-6 pt-5 border-t border-slate-200 dark:border-slate-800">
+          <div className="mt-6 pt-5 border-t border-[#222E42]">
             <div className="flex items-center justify-between mb-2">
-              <span className="text-xs font-semibold text-slate-700 dark:text-slate-300 flex items-center gap-1.5">
-                <Globe size={14} className="text-indigo-500" />
+              <span className="text-xs font-semibold text-slate-300 flex items-center gap-1.5">
+                <Globe size={14} className="text-[#F3C77C]" />
                 <span>{lang === 'ro' ? 'Limbă aplicație' : 'App Language'}</span>
               </span>
             </div>
-            <div className="grid grid-cols-2 gap-2 bg-slate-100 dark:bg-slate-800 p-1 rounded-xl">
+            <div className="grid grid-cols-2 gap-2 bg-[#131926] p-1 rounded-xl border border-[#222E42]">
               <button
                 id="drawer-lang-ro-btn"
                 onClick={() => onLanguageChange('ro')}
                 className={`py-2 px-3 rounded-lg text-xs font-semibold flex items-center justify-center gap-1.5 transition-all ${
                   lang === 'ro'
-                    ? 'bg-white dark:bg-slate-700 text-indigo-600 dark:text-indigo-400 shadow-xs'
-                    : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+                    ? 'bg-[#F3C77C] text-slate-950 shadow-xs font-bold'
+                    : 'text-slate-400 hover:text-slate-200'
                 }`}
               >
                 <span>🇷🇴 Română</span>
@@ -357,8 +309,8 @@ export const AuthDrawer: React.FC<AuthDrawerProps> = ({
                 onClick={() => onLanguageChange('en')}
                 className={`py-2 px-3 rounded-lg text-xs font-semibold flex items-center justify-center gap-1.5 transition-all ${
                   lang === 'en'
-                    ? 'bg-white dark:bg-slate-700 text-indigo-600 dark:text-indigo-400 shadow-xs'
-                    : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+                    ? 'bg-[#F3C77C] text-slate-950 shadow-xs font-bold'
+                    : 'text-slate-400 hover:text-slate-200'
                 }`}
               >
                 <span>🇬🇧 English</span>
@@ -367,20 +319,20 @@ export const AuthDrawer: React.FC<AuthDrawerProps> = ({
           </div>
 
           {/* Reset / Clear Data (Start from 0) */}
-          <div className="mt-6 pt-5 border-t border-slate-200 dark:border-slate-800">
+          <div className="mt-6 pt-5 border-t border-[#222E42]">
             {!showClearConfirm ? (
               <button
                 id="drawer-clear-all-data-btn"
                 onClick={() => setShowClearConfirm(true)}
-                className="w-full flex items-center justify-center gap-2 p-2.5 rounded-xl border border-rose-200 dark:border-rose-900/50 bg-rose-50/70 dark:bg-rose-950/20 text-rose-600 dark:text-rose-400 hover:bg-rose-100 text-xs font-semibold transition-all"
+                className="w-full flex items-center justify-center gap-2 p-2.5 rounded-xl border border-rose-900/60 bg-rose-950/20 text-rose-400 hover:bg-rose-950/40 text-xs font-semibold transition-all"
               >
                 <Trash2 size={14} />
                 <span>{t.clearAllData}</span>
               </button>
             ) : (
-              <div className="p-3 bg-rose-50 dark:bg-rose-950/30 border border-rose-200 dark:border-rose-900/60 rounded-xl space-y-2.5">
-                <div className="flex items-center gap-2 text-rose-700 dark:text-rose-300 text-xs font-semibold">
-                  <AlertTriangle size={15} className="shrink-0 text-rose-500" />
+              <div className="p-3 bg-rose-950/40 border border-rose-800/60 rounded-xl space-y-2.5">
+                <div className="flex items-center gap-2 text-rose-300 text-xs font-semibold">
+                  <AlertTriangle size={15} className="shrink-0 text-rose-400" />
                   <span>{t.clearAllConfirm}</span>
                 </div>
                 <div className="flex items-center gap-2">
@@ -397,7 +349,7 @@ export const AuthDrawer: React.FC<AuthDrawerProps> = ({
                   </button>
                   <button
                     onClick={() => setShowClearConfirm(false)}
-                    className="px-3 py-1.5 bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-200 rounded-lg text-xs font-medium hover:bg-slate-300 transition-all"
+                    className="px-3 py-1.5 bg-[#182030] text-slate-300 hover:text-white rounded-lg text-xs font-medium border border-[#25344C] transition-all"
                   >
                     {lang === 'ro' ? 'Anulează' : 'Cancel'}
                   </button>
@@ -406,9 +358,10 @@ export const AuthDrawer: React.FC<AuthDrawerProps> = ({
             )}
           </div>
 
-          {/* Install Kaskaval native button */}
-          <div className="mt-6 pt-5 border-t border-slate-200 dark:border-slate-800">
+          {/* Install Kaskaval native application button */}
+          <div className="mt-6 pt-5 border-t border-[#222E42]">
             <button
+              id="drawer-install-app-btn"
               onClick={async () => {
                 const prompt = (window as unknown as { __deferredPrompt?: { prompt: () => Promise<void> } }).__deferredPrompt;
                 if (prompt) {
@@ -425,20 +378,24 @@ export const AuthDrawer: React.FC<AuthDrawerProps> = ({
                   );
                 }
               }}
-              className="w-full flex items-center justify-between p-3.5 bg-gradient-to-r from-emerald-600 to-indigo-600 text-white rounded-2xl shadow-sm hover:opacity-95 active:scale-98 transition-all"
+              className="w-full flex items-center justify-between p-3.5 bg-gradient-to-r from-[#182233] to-[#212E44] border border-[#2C3E5A] hover:border-[#F3C77C] text-white rounded-2xl shadow-sm transition-all group active:scale-[0.99]"
             >
-              <div className="flex items-center gap-2.5">
-                <img src="/pwa-192x192.png" alt="Kaskaval" className="w-8 h-8 rounded-xl object-cover border border-white/30" />
+              <div className="flex items-center gap-3">
+                <img
+                  src="/pwa-192x192.png"
+                  alt="Kaskaval"
+                  className="w-9 h-9 rounded-xl object-cover border border-[#F3C77C]/40 shrink-0"
+                />
                 <div className="text-left">
-                  <p className="text-xs font-bold leading-tight">
-                    {lang === 'ro' ? 'Instalează Kaskaval' : 'Install Kaskaval'}
+                  <p className="text-xs font-bold leading-tight text-[#F3C77C] group-hover:text-amber-300 transition-colors">
+                    {lang === 'ro' ? 'Instalează Aplicația' : 'Install Application'}
                   </p>
-                  <p className="text-[10px] text-emerald-100">
-                    {lang === 'ro' ? 'Ecran complet fără bara Chrome' : 'Fullscreen native app experience'}
+                  <p className="text-[10.5px] text-slate-400 mt-0.5">
+                    {lang === 'ro' ? 'Ecran complet nativ fără bara Chrome' : 'Fullscreen native app experience'}
                   </p>
                 </div>
               </div>
-              <Download size={16} className="text-white shrink-0" />
+              <Download size={18} className="text-[#F3C77C] shrink-0 group-hover:scale-110 transition-transform" />
             </button>
           </div>
         </div>

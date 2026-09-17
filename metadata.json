@@ -1,6 +1,6 @@
 {
   "name": "Kaskaval",
-  "description": "Kaskaval - Personal finance tracker with Room DB, Firebase sync, and Jetpack Compose aesthetic.",
+  "description": "Kaskaval (kaskaval.online) - Personal finance tracker with Room DB, Firebase sync, and modern dark gold aesthetic.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

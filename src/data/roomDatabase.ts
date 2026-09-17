@@ -10,9 +10,9 @@ import {
   writeBatch
 } from 'firebase/firestore';
 
-const ROOM_STORAGE_KEY = 'kaskaval_room_db_v1';
-const LEGACY_ROOM_STORAGE_KEY = 'moneyfly_room_db_v3';
-const CLEAN_MIGRATION_FLAG = 'kaskaval_cleared_initial_mock_v1';
+const ROOM_STORAGE_KEY = 'kaskaval_room_db_v2';
+const LEGACY_ROOM_STORAGE_KEY = 'kaskaval_room_db_v1';
+const CLEAN_MIGRATION_FLAG = 'kaskaval_clean_zero_slate_v2';
 
 export class RoomDatabaseEmulator {
   private static instance: RoomDatabaseEmulator;
@@ -32,11 +32,14 @@ export class RoomDatabaseEmulator {
 
   private loadFromLocalStorage(): void {
     try {
-      // One-time cleanup of legacy demo/test data so user starts completely clean at 0
+      // Ensure everyone starts with a completely clean slate at 0
       const isCleaned = localStorage.getItem(CLEAN_MIGRATION_FLAG);
       if (!isCleaned) {
         localStorage.removeItem('money_tracker_room_db_v1');
         localStorage.removeItem('moneyfly_room_db_v2');
+        localStorage.removeItem('moneyfly_room_db_v3');
+        localStorage.removeItem('kaskaval_room_db_v1');
+        localStorage.removeItem('kaskaval_budget_target'); // Reset budget to 0 / unset
         localStorage.setItem(CLEAN_MIGRATION_FLAG, 'true');
         this.memoryCache = [];
         this.persist();

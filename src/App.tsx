@@ -120,84 +120,132 @@ export function MoneyTrackerApp() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-100 text-slate-800 antialiased py-4 sm:py-8 px-2 sm:px-4">
+    <div className="min-h-screen bg-[#0A0E17] text-slate-100 antialiased py-3 sm:py-6 px-3 sm:px-4 relative selection:bg-[#F3C77C] selection:text-slate-950">
+      {/* Ambient subtle glow */}
+      <div className="fixed inset-0 pointer-events-none bg-[radial-gradient(ellipse_80%_50%_at_50%_-10%,rgba(243,199,124,0.07),rgba(20,184,166,0.03),transparent)]" />
+
       {/* Top Header Bar */}
-      <header className="max-w-5xl mx-auto mb-4 flex items-center justify-between gap-3 px-2">
+      <header className="max-w-md sm:max-w-lg md:max-w-xl mx-auto mb-4 flex items-center justify-between gap-3 px-1 relative z-10">
         <div className="flex items-center gap-2.5">
           <img
             src="/pwa-192x192.png"
             alt="Kaskaval"
-            className="w-9 h-9 rounded-xl shadow-md object-cover border border-slate-200/60"
+            className="w-8 h-8 rounded-xl object-cover shadow-sm border border-amber-500/30 shrink-0"
           />
           <div>
-            <h1 className="text-base font-bold text-slate-900 tracking-tight">{t.appTitle}</h1>
+            <div className="flex items-center gap-2">
+              <h1 className="text-lg sm:text-xl font-extrabold tracking-[0.18em] text-[#F3C77C] uppercase drop-shadow-xs leading-none">
+                KASKAVAL
+              </h1>
+            </div>
+            <a
+              href="https://kaskaval.online"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[10.5px] text-slate-400 hover:text-[#F3C77C] font-mono tracking-wide transition-colors block mt-0.5"
+              title="kaskaval.online"
+            >
+              kaskaval.online
+            </a>
           </div>
         </div>
 
-        {/* Action Controls: Minimal Burger Menu Icon Button */}
-        <div className="flex items-center">
+        {/* Action Controls: Profile Avatar & Burger Menu */}
+        <div className="flex items-center gap-2">
+          <button
+            id="profile-avatar-btn"
+            onClick={() => setIsAuthDrawerOpen(true)}
+            className="relative group transition-transform active:scale-95"
+            title={user ? (user.displayName || user.email || 'Profile') : 'Settings'}
+            aria-label="Profile and Settings"
+          >
+            <div className="w-9 h-9 rounded-full ring-2 ring-[#E5B869] p-0.5 overflow-hidden bg-[#182233] flex items-center justify-center shadow-md shadow-amber-500/10">
+              {user?.photoURL ? (
+                <img src={user.photoURL} alt="User" className="w-full h-full rounded-full object-cover" />
+              ) : (
+                <div className="w-full h-full rounded-full bg-gradient-to-tr from-amber-600/50 to-teal-500/40 flex items-center justify-center text-[#F3C77C] font-bold text-xs">
+                  {user?.displayName ? user.displayName.charAt(0).toUpperCase() : 'K'}
+                </div>
+              )}
+            </div>
+          </button>
+
           <button
             id="burger-menu-btn"
             onClick={() => setIsAuthDrawerOpen(true)}
-            className="flex items-center justify-center w-10 h-10 bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 rounded-xl shadow-2xs hover:border-slate-300 transition-all active:scale-95"
+            className="flex items-center justify-center w-9 h-9 bg-[#131926] hover:bg-[#1A2337] text-slate-300 hover:text-white border border-[#232F44] rounded-xl shadow-xs transition-all active:scale-95"
             title={lang === 'ro' ? 'Meniu' : 'Menu'}
             aria-label="Menu"
           >
-            <Menu size={20} className="text-slate-700" />
+            <Menu size={18} />
           </button>
         </div>
       </header>
 
       {/* Main Content Layout */}
-      <main className="max-w-5xl mx-auto">
-        {/* Android App Surface (Material 3 Theme) */}
-        <div
-          id="android-app-container"
-          className="w-full bg-slate-50/90 rounded-[28px] overflow-hidden p-4 sm:p-6"
+      <main className="max-w-md sm:max-w-lg md:max-w-xl mx-auto space-y-4 relative z-10">
+        {/* Visual Financial Reports & Analytics (3 Cards: Monthly Budget, Weekly Trends, Expense Breakdown) */}
+        <FinancialCharts
+          transactions={transactions}
+          lang={lang}
+          totalIncome={totalIncome}
+          totalExpense={totalExpense}
+          currency={currency}
+        />
+
+        {/* Big Luxury Gold 'Adăugare Nouă' Button matching screenshot theme */}
+        <button
+          id="add-new-entry-btn"
+          onClick={() => handleOpenAddModal('expense')}
+          className="w-full flex items-center justify-center gap-2.5 bg-gradient-to-r from-[#F3C77C] via-[#E5B869] to-[#D4A247] hover:brightness-105 active:scale-[0.99] text-slate-950 font-extrabold py-3.5 px-6 rounded-2xl shadow-lg shadow-amber-500/15 transition-all text-sm tracking-wide mb-4"
         >
-          {/* Visual Financial Reports & Analytics (Piechart Donut & Venituri/Cheltuieli) */}
-          <FinancialCharts
-            transactions={transactions}
-            lang={lang}
-            totalIncome={totalIncome}
-            totalExpense={totalExpense}
-            chartStyle={chartStyle}
-            currency={currency}
-          />
+          <div className="w-6 h-6 rounded-full bg-slate-950/15 flex items-center justify-center">
+            <Plus size={16} className="text-slate-950 stroke-[3]" />
+          </div>
+          <span>{t.addNewEntry}</span>
+        </button>
 
-          {/* Un singur buton mare cu numele 'Adăugare Nouă' pe fundal în două culori (verde și roșu) */}
-          <button
-            id="add-new-entry-btn"
-            onClick={() => handleOpenAddModal('expense')}
-            className="w-full flex items-center justify-center gap-2.5 bg-gradient-to-r from-emerald-600 via-emerald-500/80 to-rose-600 hover:brightness-105 active:scale-[0.99] text-white font-bold py-3.5 px-6 rounded-2xl shadow-md hover:shadow-lg transition-all text-base mb-5"
-          >
-            <div className="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center">
-              <Plus size={16} className="stroke-[3]" />
-            </div>
-            <span>{t.addNewEntry}</span>
-          </button>
+        {/* Reactive Transaction List with Gmail-style Swipe to Delete in Dark Theme */}
+        <TransactionList
+          transactions={transactions}
+          onDelete={handleDeleteTransaction}
+          selectedFilter={selectedFilter}
+          onFilterChange={setSelectedFilter}
+          lang={lang}
+          currency={currency}
+        />
 
-          {/* Reactive Transaction List with Gmail-style Swipe to Delete */}
-          <TransactionList
-            transactions={transactions}
-            onDelete={handleDeleteTransaction}
-            selectedFilter={selectedFilter}
-            onFilterChange={setSelectedFilter}
-            lang={lang}
-            currency={currency}
-          />
-        </div>
+        {/* Official Website Branding Footer */}
+        <footer className="pt-6 pb-4 text-center">
+          <div className="flex items-center justify-center gap-2 mb-1">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#F3C77C]" />
+            <a
+              href="https://kaskaval.online"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-xs font-semibold text-slate-400 hover:text-[#F3C77C] transition-colors"
+            >
+              kaskaval.online
+            </a>
+            <span className="w-1.5 h-1.5 rounded-full bg-[#14B8A6]" />
+          </div>
+          <p className="text-[11px] text-slate-500">
+            {lang === 'ro'
+              ? 'Aplicație Financiară Inteligentă · Offline-First & Cloud'
+              : 'Smart Personal Finance Tracker · Offline-First & Cloud'}
+          </p>
+        </footer>
       </main>
 
       {/* Gmail-style Undo Notification Toast */}
       {toastMessage && (
-        <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 flex items-center gap-3 bg-slate-900 text-white px-4 py-3 rounded-2xl shadow-2xl border border-slate-700 animate-in fade-in slide-in-from-bottom-3 duration-200 text-xs">
+        <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 flex items-center gap-3 bg-[#131926] text-white px-4 py-3 rounded-2xl shadow-2xl border border-[#253349] animate-in fade-in slide-in-from-bottom-3 duration-200 text-xs">
           <span>{toastMessage}</span>
           {deletedTxBackup && (
             <button
               id="undo-delete-btn"
               onClick={handleUndoDelete}
-              className="flex items-center gap-1 text-amber-400 hover:text-amber-300 font-bold uppercase tracking-wider pl-2 border-l border-slate-700"
+              className="flex items-center gap-1 text-[#F3C77C] hover:text-amber-300 font-bold uppercase tracking-wider pl-2 border-l border-[#253349]"
             >
               <Undo2 size={13} />
               <span>{t.undo}</span>

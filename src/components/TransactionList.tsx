@@ -37,15 +37,18 @@ export const TransactionList: React.FC<TransactionListProps> = ({
   });
 
   return (
-    <div id="transactions-card" className="bg-white rounded-2xl p-4 shadow-sm border border-slate-100">
+    <div
+      id="transactions-card"
+      className="bg-[#131926] border border-[#1F2B3E] hover:border-[#27374E] rounded-[22px] p-5 shadow-xl transition-all"
+    >
       {/* Header & Filter Chips */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-3">
         <div>
-          <h3 className="text-sm font-semibold text-slate-800 tracking-tight">{t.recentTransactions}</h3>
+          <h3 className="text-sm font-semibold text-slate-100 tracking-tight">{t.recentTransactions}</h3>
         </div>
 
-        {/* Filter chips (Material 3 style) */}
-        <div className="flex items-center gap-1.5 bg-slate-100 p-1 rounded-xl">
+        {/* Filter chips (Dark Luxury style) */}
+        <div className="flex items-center gap-1.5 bg-[#182030] border border-[#243349] p-1 rounded-xl">
           {filterOptions.map(opt => (
             <button
               key={opt.key}
@@ -53,8 +56,8 @@ export const TransactionList: React.FC<TransactionListProps> = ({
               onClick={() => onFilterChange(opt.key)}
               className={`px-3 py-1 text-xs rounded-lg font-medium transition-all ${
                 selectedFilter === opt.key
-                  ? 'bg-white text-indigo-600 shadow-xs font-semibold'
-                  : 'text-slate-600 hover:text-slate-900'
+                  ? 'bg-[#F3C77C] text-slate-950 shadow-xs font-bold'
+                  : 'text-slate-400 hover:text-slate-200'
               }`}
             >
               {opt.label}
@@ -64,19 +67,19 @@ export const TransactionList: React.FC<TransactionListProps> = ({
       </div>
 
       {/* Gmail swipe hint banner */}
-      <div className="mb-3 px-3 py-1.5 bg-slate-50 border border-slate-100 rounded-xl flex items-center gap-2 text-[11px] text-slate-500">
-        <SlidersHorizontal size={13} className="text-indigo-500 shrink-0" />
+      <div className="mb-3 px-3 py-1.5 bg-[#182030]/50 border border-[#232F42]/60 rounded-xl flex items-center gap-2 text-[11px] text-slate-400">
+        <SlidersHorizontal size={13} className="text-[#F3C77C] shrink-0" />
         <span className="truncate">{t.deleteSwipeHint}</span>
       </div>
 
       {/* List items */}
       {filtered.length === 0 ? (
-        <div className="py-12 text-center">
+        <div className="py-10 text-center">
           <p className="text-xs text-slate-400 font-medium">{t.noTransactionsFound}</p>
-          <p className="text-[11px] text-slate-400 mt-0.5">{t.emptyListHint}</p>
+          <p className="text-[11px] text-slate-500 mt-0.5">{t.emptyListHint}</p>
         </div>
       ) : (
-        <div className="space-y-1">
+        <div className="space-y-1.5">
           {filtered.map(tx => (
             <SwipeableTransactionItem
               key={tx.id}

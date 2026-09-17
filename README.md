@@ -1,15 +1,17 @@
 <p align="center">
-  <img src="public/banner.jpg" alt="Kaskaval Hero Banner" width="100%" style="border-radius: 16px; max-width: 850px; box-shadow: 0 10px 30px rgba(0,0,0,0.15);" />
+  <img src="public/banner.jpg" alt="Kaskaval Hero Banner - kaskaval.online" width="100%" style="border-radius: 16px; max-width: 850px; box-shadow: 0 10px 30px rgba(0,0,0,0.15);" />
 </p>
 
-<h1 align="center">🧀 Kaskaval</h1>
+<h1 align="center">🧀 Kaskaval · <a href="https://kaskaval.online">kaskaval.online</a></h1>
 
 <p align="center">
   <strong>Smart, Minimalist Personal Finance Tracker & Budget Planner</strong><br>
-  <em>Clean Material 3 UI • Offline-First Persistence • Firebase Cloud Sync • Progressive Web App (PWA)</em>
+  <em>Clean Material 3 UI • Offline-First Persistence • Firebase Cloud Sync • Progressive Web App (PWA)</em><br>
+  🌐 <strong>Official Website:</strong> <a href="https://kaskaval.online">https://kaskaval.online</a>
 </p>
 
 <p align="center">
+  <a href="https://kaskaval.online"><img src="https://img.shields.io/badge/Website-kaskaval.online-F3C77C?style=flat-square&logo=googlechrome&logoColor=black" alt="Website" /></a>
   <img src="https://img.shields.io/badge/Platform-Android%20%7C%20iOS%20%7C%20Web-4F46E5?style=flat-square" alt="Platform" />
   <img src="https://img.shields.io/badge/Architecture-Clean%20%26%20Offline--First-10B981?style=flat-square" alt="Architecture" />
   <img src="https://img.shields.io/badge/React-18.3-61DAFB?style=flat-square&logo=react" alt="React" />
@@ -23,7 +25,7 @@
 
 ## 🌟 Despre Kaskaval (Overview)
 
-**Kaskaval** este o aplicație modernă de gestiune a finanțelor personale, concepută pentru a fi rapidă, intuitivă și plăcută la utilizare zilnică. Inspirată din principiile de design **Material 3 / Jetpack Compose**, aplicația combină simplitatea vizuală cu o arhitectură robustă: funcționează perfect offline și sincronizează automat datele în cloud atunci când ești conectat.
+**Kaskaval** ([kaskaval.online](https://kaskaval.online)) este o aplicație modernă de gestiune a finanțelor personale, concepută pentru a fi rapidă, intuitivă și plăcută la utilizare zilnică. Inspirată din principiile de design **Material 3 / Jetpack Compose**, aplicația combină simplitatea vizuală cu o arhitectură robustă: funcționează perfect offline și sincronizează automat datele în cloud atunci când ești conectat.
 
 Instalată pe ecranul telefonului ca **PWA (Progressive Web App)**, Kaskaval rulează **pe tot ecranul (fullscreen)**, fără bara de adrese a browserului, oferind senzația unei aplicații native descărcate din Google Play Store.
 
@@ -82,9 +84,11 @@ Dacă vrei să rulezi proiectul pe calculatorul tău:
 
 1. **Clonează repository-ul**:
    ```bash
-   git clone https://github.com/UTILIZATOR/kaskaval.git
+   git clone https://github.com/alex3adrian/kaskaval.git
    cd kaskaval
    ```
+
+   *Sau accesează direct versiunea live pe web:* **[https://kaskaval.online](https://kaskaval.online)**
 
 2. **Instalează dependențele**:
    ```bash

@@ -152,7 +152,7 @@ export const SwipeableTransactionItem: React.FC<SwipeableTransactionItemProps> =
         onMouseMove={handleTouchMove}
         onMouseUp={handleTouchEnd}
         onMouseLeave={handleTouchEnd}
-        className="relative z-10 flex items-center justify-between p-3 bg-white border border-slate-100 hover:border-slate-200 rounded-xl shadow-xs cursor-grab active:cursor-grabbing touch-pan-y"
+        className="relative z-10 flex items-center justify-between p-3 bg-[#182030] border border-[#232F44] hover:border-[#354562] rounded-xl shadow-xs cursor-grab active:cursor-grabbing touch-pan-y transition-colors"
       >
         {/* Left: Category Icon & Details */}
         <div className="flex items-center gap-3 min-w-0 pointer-events-none">
@@ -165,26 +165,26 @@ export const SwipeableTransactionItem: React.FC<SwipeableTransactionItemProps> =
 
           <div className="min-w-0">
             <div className="flex items-center gap-1.5">
-              <p className="text-xs font-semibold text-slate-800 truncate">{transaction.title}</p>
+              <p className="text-xs font-semibold text-slate-100 truncate">{transaction.title}</p>
               {transaction.syncedToCloud ? (
-                <span title={t.firebaseSynced} className="text-emerald-500 shrink-0">
+                <span title={t.firebaseSynced} className="text-[#2DD4BF] shrink-0">
                   <CloudCheck size={13} />
                 </span>
               ) : (
-                <span title={t.offlineLocalMode} className="text-slate-300 shrink-0">
+                <span title={t.offlineLocalMode} className="text-slate-500 shrink-0">
                   <CloudOff size={13} />
                 </span>
               )}
             </div>
 
             <div className="flex items-center gap-2 text-[11px] text-slate-400 mt-0.5">
-              <span className="truncate max-w-[120px]">{categoryTranslated}</span>
+              <span className="truncate max-w-[120px] text-slate-300">{categoryTranslated}</span>
               <span>•</span>
               <span className="shrink-0">{formatDate(transaction.timestamp)}</span>
               {transaction.paymentMethod && (
                 <>
                   <span>•</span>
-                  <span className="hidden sm:inline bg-slate-100 px-1.5 py-0.2 rounded-xs text-slate-500 font-mono text-[10px]">
+                  <span className="hidden sm:inline bg-[#222E42] px-1.5 py-0.2 rounded-xs text-slate-300 font-mono text-[10px]">
                     {paymentTranslated}
                   </span>
                 </>
@@ -196,8 +196,8 @@ export const SwipeableTransactionItem: React.FC<SwipeableTransactionItemProps> =
         {/* Right: Amount & Manual Delete fallback button */}
         <div className="flex items-center gap-2.5 shrink-0 ml-2">
           <span
-            className={`text-sm font-bold tracking-tight pointer-events-none ${
-              isExpense ? 'text-slate-900' : 'text-emerald-600'
+            className={`text-sm font-bold tracking-tight pointer-events-none font-mono ${
+              isExpense ? 'text-slate-100' : 'text-[#F3C77C]'
             }`}
           >
             {isExpense ? '-' : '+'}{formatMoney(transaction.amount, currency)}
@@ -209,7 +209,7 @@ export const SwipeableTransactionItem: React.FC<SwipeableTransactionItemProps> =
               e.stopPropagation();
               onDelete(transaction.id);
             }}
-            className="p-1.5 text-slate-300 hover:text-rose-600 hover:bg-rose-50 rounded-lg transition-colors"
+            className="p-1.5 text-slate-500 hover:text-rose-400 hover:bg-rose-500/10 rounded-lg transition-colors"
             title={lang === 'ro' ? 'Șterge tranzacția' : 'Delete transaction'}
           >
             <Trash2 size={13} />
