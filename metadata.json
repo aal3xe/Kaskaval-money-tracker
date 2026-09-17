@@ -1,6 +1,6 @@
 {
-  "name": "MoneyFly",
-  "description": "MoneyFly - Personal finance tracker with Room DB, Firebase sync, and Jetpack Compose aesthetic.",
+  "name": "Kaskaval",
+  "description": "Kaskaval - Personal finance tracker with Room DB, Firebase sync, and Jetpack Compose aesthetic.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

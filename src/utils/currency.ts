@@ -46,11 +46,12 @@ export const CURRENCIES: Record<CurrencyCode, CurrencyConfig> = {
 
 export const DEFAULT_CURRENCY: CurrencyCode = 'RON';
 
-const STORAGE_KEY = 'moneyfly_selected_currency';
+const STORAGE_KEY = 'kaskaval_selected_currency';
+const LEGACY_STORAGE_KEY = 'moneyfly_selected_currency';
 
 export function getStoredCurrency(): CurrencyCode {
   try {
-    const val = localStorage.getItem(STORAGE_KEY) as CurrencyCode;
+    const val = (localStorage.getItem(STORAGE_KEY) || localStorage.getItem(LEGACY_STORAGE_KEY)) as CurrencyCode;
     if (val && CURRENCIES[val]) {
       return val;
     }

@@ -2,7 +2,7 @@ export type Language = 'ro' | 'en';
 
 export const TRANSLATIONS = {
   ro: {
-    appTitle: 'MoneyFly',
+    appTitle: 'Kaskaval',
     appSubtitle: 'Clean Architecture cu Room DB, Dagger Hilt & Firebase Auth',
     architectureBadge: 'Kotlin & Jetpack Compose',
     totalBalance: 'Sold Total',
@@ -95,7 +95,7 @@ export const TRANSLATIONS = {
     }
   },
   en: {
-    appTitle: 'MoneyFly',
+    appTitle: 'Kaskaval',
     appSubtitle: 'Clean Architecture with Room DB, Dagger Hilt & Firebase Auth',
     architectureBadge: 'Kotlin & Jetpack Compose',
     totalBalance: 'Total Balance',

@@ -216,9 +216,32 @@ export const AuthDrawer: React.FC<AuthDrawerProps> = ({
           )}
 
           {authError && (
-            <div className="mt-4 p-2.5 bg-rose-500/10 border border-rose-500/20 rounded-xl text-rose-500 dark:text-rose-400 text-xs flex items-center gap-2">
-              <ShieldAlert size={14} className="shrink-0" />
-              <span>{authError}</span>
+            <div className="mt-4 p-3 bg-rose-500/10 border border-rose-500/20 rounded-xl text-rose-600 dark:text-rose-400 text-xs flex flex-col gap-1.5">
+              <div className="flex items-center gap-2 font-semibold">
+                <ShieldAlert size={15} className="shrink-0 text-rose-500" />
+                <span>
+                  {authError.includes('unauthorized-domain')
+                    ? (lang === 'ro' ? 'Domeniu neautorizat în Firebase' : 'Unauthorized domain in Firebase')
+                    : (lang === 'ro' ? 'Eroare de autentificare' : 'Authentication error')}
+                </span>
+              </div>
+              <p className="text-[11px] leading-relaxed text-slate-600 dark:text-slate-300">
+                {authError.includes('unauthorized-domain')
+                  ? (lang === 'ro'
+                    ? `Domeniul actual (${window.location.hostname}) trebuie adăugat în Firebase Console > Authentication > Settings > Authorized domains. Până atunci, folosește "Mod Oaspete" pentru funcționalitate completă!`
+                    : `Current domain (${window.location.hostname}) must be added to Firebase Console > Authentication > Settings > Authorized domains. You can use "Guest Mode" for full functionality!`
+                  )
+                  : authError}
+              </p>
+              {authError.includes('unauthorized-domain') && (
+                <button
+                  type="button"
+                  onClick={handleGuestLogin}
+                  className="mt-1 py-1.5 px-2.5 bg-rose-500/20 hover:bg-rose-500/30 text-rose-700 dark:text-rose-300 rounded-lg font-medium text-[11px] text-center transition-colors"
+                >
+                  {lang === 'ro' ? 'Activează Modul Oaspete acum' : 'Activate Guest Mode now'}
+                </button>
+              )}
             </div>
           )}
 
@@ -383,7 +406,7 @@ export const AuthDrawer: React.FC<AuthDrawerProps> = ({
             )}
           </div>
 
-          {/* Install MoneyFly native button */}
+          {/* Install Kaskaval native button */}
           <div className="mt-6 pt-5 border-t border-slate-200 dark:border-slate-800">
             <button
               onClick={async () => {
@@ -405,10 +428,10 @@ export const AuthDrawer: React.FC<AuthDrawerProps> = ({
               className="w-full flex items-center justify-between p-3.5 bg-gradient-to-r from-emerald-600 to-indigo-600 text-white rounded-2xl shadow-sm hover:opacity-95 active:scale-98 transition-all"
             >
               <div className="flex items-center gap-2.5">
-                <img src="/pwa-192x192.png" alt="MoneyFly" className="w-8 h-8 rounded-xl object-cover border border-white/30" />
+                <img src="/pwa-192x192.png" alt="Kaskaval" className="w-8 h-8 rounded-xl object-cover border border-white/30" />
                 <div className="text-left">
                   <p className="text-xs font-bold leading-tight">
-                    {lang === 'ro' ? 'Instalează MoneyFly' : 'Install MoneyFly'}
+                    {lang === 'ro' ? 'Instalează Kaskaval' : 'Install Kaskaval'}
                   </p>
                   <p className="text-[10px] text-emerald-100">
                     {lang === 'ro' ? 'Ecran complet fără bara Chrome' : 'Fullscreen native app experience'}

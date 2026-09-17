@@ -10,8 +10,9 @@ import {
   writeBatch
 } from 'firebase/firestore';
 
-const ROOM_STORAGE_KEY = 'moneyfly_room_db_v3';
-const CLEAN_MIGRATION_FLAG = 'moneyfly_cleared_initial_mock_v3';
+const ROOM_STORAGE_KEY = 'kaskaval_room_db_v1';
+const LEGACY_ROOM_STORAGE_KEY = 'moneyfly_room_db_v3';
+const CLEAN_MIGRATION_FLAG = 'kaskaval_cleared_initial_mock_v1';
 
 export class RoomDatabaseEmulator {
   private static instance: RoomDatabaseEmulator;
@@ -42,7 +43,7 @@ export class RoomDatabaseEmulator {
         return;
       }
 
-      const stored = localStorage.getItem(ROOM_STORAGE_KEY);
+      const stored = localStorage.getItem(ROOM_STORAGE_KEY) || localStorage.getItem(LEGACY_ROOM_STORAGE_KEY);
       if (stored) {
         const parsed = JSON.parse(stored);
         if (Array.isArray(parsed)) {

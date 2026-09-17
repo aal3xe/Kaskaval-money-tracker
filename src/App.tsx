@@ -125,7 +125,7 @@ export function MoneyTrackerApp() {
         <div className="flex items-center gap-2.5">
           <img
             src="/pwa-192x192.png"
-            alt="MoneyFly"
+            alt="Kaskaval"
             className="w-9 h-9 rounded-xl shadow-md object-cover border border-slate-200/60"
           />
           <div>

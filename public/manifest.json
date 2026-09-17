@@ -1,8 +1,8 @@
 {
   "id": "/",
-  "name": "MoneyFly",
-  "short_name": "MoneyFly",
-  "description": "MoneyFly - Personal finance tracker with Room DB and cloud sync",
+  "name": "Kaskaval",
+  "short_name": "Kaskaval",
+  "description": "Kaskaval - Personal finance tracker with Room DB and cloud sync",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",

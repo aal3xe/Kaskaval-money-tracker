@@ -1,12 +1,12 @@
 <p align="center">
-  <img src="public/banner.jpg" alt="MoneyFly Hero Banner" width="100%" style="border-radius: 16px; max-width: 850px; box-shadow: 0 10px 30px rgba(0,0,0,0.15);" />
+  <img src="public/banner.jpg" alt="Kaskaval Hero Banner" width="100%" style="border-radius: 16px; max-width: 850px; box-shadow: 0 10px 30px rgba(0,0,0,0.15);" />
 </p>
 
-<h1 align="center">💸 MoneyFly</h1>
+<h1 align="center">🧀 Kaskaval</h1>
 
 <p align="center">
   <strong>Smart, Minimalist Personal Finance Tracker & Budget Planner</strong><br>
-  <em>Clean Android-inspired UI • Offline-First Persistence • Firebase Cloud Sync • Progressive Web App (PWA)</em>
+  <em>Clean Material 3 UI • Offline-First Persistence • Firebase Cloud Sync • Progressive Web App (PWA)</em>
 </p>
 
 <p align="center">
@@ -21,11 +21,11 @@
 
 ---
 
-## 🌟 Despre MoneyFly (Overview)
+## 🌟 Despre Kaskaval (Overview)
 
-**MoneyFly** este o aplicație modernă de gestiune a finanțelor personale, concepută pentru a fi rapidă, intuitivă și plăcută la utilizare zilnică. Inspirată din principiile de design **Material 3 / Jetpack Compose**, aplicația combină simplitatea vizuală cu o arhitectură robustă: funcționează perfect offline și sincronizează automat datele în cloud atunci când ești conectat.
+**Kaskaval** este o aplicație modernă de gestiune a finanțelor personale, concepută pentru a fi rapidă, intuitivă și plăcută la utilizare zilnică. Inspirată din principiile de design **Material 3 / Jetpack Compose**, aplicația combină simplitatea vizuală cu o arhitectură robustă: funcționează perfect offline și sincronizează automat datele în cloud atunci când ești conectat.
 
-Instalată pe ecranul telefonului ca **PWA (Progressive Web App)**, MoneyFly rulează **pe tot ecranul (fullscreen)**, fără bara de adrese a browserului, oferind senzația unei aplicații native descărcate din Google Play Store.
+Instalată pe ecranul telefonului ca **PWA (Progressive Web App)**, Kaskaval rulează **pe tot ecranul (fullscreen)**, fără bara de adrese a browserului, oferind senzația unei aplicații native descărcate din Google Play Store.
 
 ---
 
@@ -51,13 +51,13 @@ Aplicația este optimizată pentru a te ajuta să aplici principii financiare do
 - **50% Nevoi (Needs)**: Chirie, utilități, mâncare de bază, transport.
 - **30% Dorințe (Wants)**: Ieșiri în oraș, hobby-uri, electronice, divertisment.
 - **20% Economii & Investiții (Savings)**: Fond de urgență, investiții pe termen lung.
-> *Sfat MoneyFly*: Urmărește bara de proporție din ecranul principal. Dacă cheltuielile depășesc 70% din venituri, verifică distribuția categoriilor pentru a găsi scurgerile de buget.
+> *Sfat Kaskaval*: Urmărește bara de proporție din ecranul principal. Dacă cheltuielile depășesc 70% din venituri, verifică distribuția categoriilor pentru a găsi scurgerile de buget.
 
 ### 2. „Plătește-te pe tine primul” (Pay Yourself First)
 - Imediat ce înregistrezi un venit, alocă o sumă direct către un cont de economii înainte de a începe cheltuielile lunare.
 
 ### 3. Înregistrarea Zilnică a Micro-Cheltuielilor
-- Micile achiziții de impuls (cafea zilnică, gustări, abonamente uitate) adunate lunar pot reprezenta peste 15-20% din buget. Înregistrează-le pe loc în MoneyFly imediat ce ai plătit!
+- Micile achiziții de impuls (cafea zilnică, gustări, abonamente uitate) adunate lunar pot reprezenta peste 15-20% din buget. Înregistrează-le pe loc în Kaskaval imediat ce ai plătit!
 
 ---
 
@@ -82,8 +82,8 @@ Dacă vrei să rulezi proiectul pe calculatorul tău:
 
 1. **Clonează repository-ul**:
    ```bash
-   git clone https://github.com/UTILIZATOR/moneyfly.git
-   cd moneyfly
+   git clone https://github.com/UTILIZATOR/kaskaval.git
+   cd kaskaval
    ```
 
 2. **Instalează dependențele**:
@@ -104,19 +104,19 @@ Dacă vrei să rulezi proiectul pe calculatorul tău:
 
 ---
 
-## 📲 Cum instalezi MoneyFly pe Telefon (PWA Guide)
+## 📲 Cum instalezi Kaskaval pe Telefon (PWA Guide)
 
 ### Pe Android (Google Chrome)
-1. Deschide link-ul tău găzduit (ex: `https://moneyfly.vercel.app`) în **Chrome**.
+1. Deschide link-ul aplicației în **Chrome**.
 2. Apasă pe butonul **„Instalează”** afișat în partea de sus a aplicației (sau apasă pe cele 3 puncte **⋮** din dreapta-sus -> **„Instalează aplicația”**).
-3. Confirmă instalarea. Pe ecranul telefonului va apărea iconița **MoneyFly**.
+3. Confirmă instalarea. Pe ecranul telefonului va apărea iconița **Kaskaval**.
 4. Deschide aplicația: va rula **pe tot ecranul, fără nicio bară de adresă sau butoane de browser**.
 
 ### Pe iPhone / iOS (Safari)
 1. Deschide link-ul aplicației în **Safari**.
 2. Apasă pe butonul de Partajare (**Share** 📤 de la baza ecranului).
 3. Derulează în jos și alege **„Adaugă pe ecranul principal” (Add to Home Screen)**.
-4. Apasă **Add**. MoneyFly este acum gata pe ecranul tău principal!
+4. Apasă **Add**. Kaskaval este acum gata pe ecranul tău principal!
 
 ---
 
@@ -130,5 +130,5 @@ Dacă vrei să rulezi proiectul pe calculatorul tău:
 
 <p align="center">
   Creat cu pasiune pentru independență financiară și design de calitate.<br>
-  <strong>MoneyFly © 2026</strong>
+  <strong>Kaskaval © 2026</strong>
 </p>

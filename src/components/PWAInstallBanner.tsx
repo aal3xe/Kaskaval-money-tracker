@@ -88,12 +88,12 @@ export const PWAInstallBanner: React.FC<PWAInstallBannerProps> = ({ lang }) => {
           <div className="flex items-center gap-2.5 min-w-0">
             <img
               src="/pwa-192x192.png"
-              alt="MoneyFly"
+              alt="Kaskaval"
               className="w-9 h-9 rounded-xl shadow-xs shrink-0 object-cover border border-white/20"
             />
             <div className="min-w-0">
               <p className="text-xs sm:text-sm font-semibold truncate flex items-center gap-1.5">
-                <span>{lang === 'ro' ? 'Instalează MoneyFly pe ecran' : 'Install MoneyFly on home screen'}</span>
+                <span>{lang === 'ro' ? 'Instalează Kaskaval pe ecran' : 'Install Kaskaval on home screen'}</span>
                 <span className="text-[10px] bg-emerald-400/30 text-emerald-100 font-bold px-1.5 py-0.5 rounded-md">
                   Fullscreen
                 </span>
@@ -129,8 +129,8 @@ export const PWAInstallBanner: React.FC<PWAInstallBannerProps> = ({ lang }) => {
           <div className="bg-white rounded-3xl p-5 max-w-sm w-full shadow-2xl text-slate-800 animate-in fade-in zoom-in-95 duration-200 border border-slate-100">
             <div className="flex items-center justify-between mb-3">
               <div className="flex items-center gap-2.5">
-                <img src="/pwa-192x192.png" alt="MoneyFly" className="w-8 h-8 rounded-xl object-cover" />
-                <span className="font-bold text-slate-900">MoneyFly</span>
+                <img src="/pwa-192x192.png" alt="Kaskaval" className="w-8 h-8 rounded-xl object-cover" />
+                <span className="font-bold text-slate-900">Kaskaval</span>
               </div>
               <button
                 onClick={() => setShowHelperModal(false)}
