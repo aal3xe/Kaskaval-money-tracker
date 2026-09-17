@@ -15,6 +15,7 @@ import {
   Menu
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
+import { Analytics } from '@vercel/analytics/react';
 
 export function MoneyTrackerApp() {
   // Primary language default to Romanian ('ro') with English ('en') toggle
@@ -238,6 +239,7 @@ export default function App() {
   return (
     <AuthProvider>
       <MoneyTrackerApp />
+      <Analytics />
     </AuthProvider>
   );
 }
