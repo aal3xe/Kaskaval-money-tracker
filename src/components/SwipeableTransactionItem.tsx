@@ -75,8 +75,9 @@ export const SwipeableTransactionItem: React.FC<SwipeableTransactionItemProps> =
   const categoryTranslated = (t.categories as Record<string, string>)[transaction.categoryName] || transaction.categoryName;
   const paymentTranslated = (t.paymentMethods as Record<string, string>)[transaction.paymentMethod] || transaction.paymentMethod;
 
-  const formatDate = (timestamp: number) => {
-    const date = new Date(timestamp);
+  const formatDate = (timestamp?: number) => {
+    const validTimestamp = typeof timestamp === 'number' && !isNaN(timestamp) ? timestamp : Date.now();
+    const date = new Date(validTimestamp);
     const today = new Date();
     const isToday = date.toDateString() === today.toDateString();
 
@@ -94,7 +95,7 @@ export const SwipeableTransactionItem: React.FC<SwipeableTransactionItemProps> =
   const swipeProgress = Math.min(1, Math.abs(offsetX) / DISMISS_THRESHOLD);
   const isSwipedLeft = offsetX < -10;
   const isSwipedRight = offsetX > 10;
-  const isSwiping = isDragging || Math.abs(offsetX) > 0.5;
+  const isSwiping = isDragging || Math.abs(offsetX) > 2;
 
   return (
     <div
@@ -102,9 +103,10 @@ export const SwipeableTransactionItem: React.FC<SwipeableTransactionItemProps> =
         isDeleting ? 'max-h-0 opacity-0 mb-0 pointer-events-none' : 'max-h-24 mb-2'
       }`}
     >
-      {/* Background Reveal (Gmail-style Red Trash indicator from both sides) */}
+      {/* Background Reveal (Only rendered/visible when actually sliding) */}
       <div
         style={{
+          display: isSwiping ? 'flex' : 'none',
           opacity: isSwiping ? Math.min(1, Math.abs(offsetX) / 15) : 0,
           pointerEvents: isSwiping ? 'auto' : 'none',
         }}

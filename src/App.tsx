@@ -8,6 +8,7 @@ import { TransactionList } from './components/TransactionList';
 import { AddTransactionModal } from './components/AddTransactionModal';
 import { PWAInstallBanner } from './components/PWAInstallBanner';
 import { Language, TRANSLATIONS } from './i18n';
+import { CurrencyCode, getStoredCurrency, setStoredCurrency } from './utils/currency';
 import {
   Wallet,
   Plus,
@@ -21,6 +22,9 @@ export function MoneyTrackerApp() {
   const [lang, setLang] = useState<Language>(() => {
     return (localStorage.getItem('money_tracker_lang') as Language) || 'ro';
   });
+
+  // Currency selection defaulting to Romanian Leu ('RON')
+  const [currency, setCurrency] = useState<CurrencyCode>(() => getStoredCurrency());
 
   // Chart representation style preference: 'categories' (round) or 'linear' (straight bars)
   const [chartStyle, setChartStyle] = useState<ChartStyle>(() => {
@@ -42,6 +46,20 @@ export function MoneyTrackerApp() {
   useEffect(() => {
     localStorage.setItem('money_tracker_lang', lang);
   }, [lang]);
+
+  const handleCurrencyChange = (newCurrency: CurrencyCode) => {
+    setCurrency(newCurrency);
+    setStoredCurrency(newCurrency);
+  };
+
+  const handleClearAllData = async () => {
+    await room.clearAll();
+    setTransactions([]);
+    setToastMessage(lang === 'ro' ? 'Toate tranzacțiile au fost șterse. Start de la 0!' : 'All transactions cleared. Fresh start at 0.00!');
+    setTimeout(() => {
+      setToastMessage(null);
+    }, 4000);
+  };
 
   useEffect(() => {
     setTransactions(room.getAll());
@@ -147,6 +165,7 @@ export function MoneyTrackerApp() {
             totalIncome={totalIncome}
             totalExpense={totalExpense}
             chartStyle={chartStyle}
+            currency={currency}
           />
 
           {/* Un singur buton mare cu numele 'Adăugare Nouă' pe fundal în două culori (verde și roșu) */}
@@ -168,6 +187,7 @@ export function MoneyTrackerApp() {
             selectedFilter={selectedFilter}
             onFilterChange={setSelectedFilter}
             lang={lang}
+            currency={currency}
           />
         </div>
       </main>
@@ -196,6 +216,7 @@ export function MoneyTrackerApp() {
         onClose={() => setIsAddModalOpen(false)}
         onSave={handleAddTransaction}
         lang={lang}
+        currency={currency}
       />
 
       {/* Auth & Cloud Sync Drawer (Burger Menu) */}
@@ -209,6 +230,9 @@ export function MoneyTrackerApp() {
           setChartStyle(newStyle);
           localStorage.setItem('preferred_chart_style', newStyle);
         }}
+        currency={currency}
+        onCurrencyChange={handleCurrencyChange}
+        onClearAllData={handleClearAllData}
       />
     </div>
   );

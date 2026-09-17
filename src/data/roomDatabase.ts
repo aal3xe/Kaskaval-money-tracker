@@ -10,8 +10,8 @@ import {
   writeBatch
 } from 'firebase/firestore';
 
-const ROOM_STORAGE_KEY = 'moneyfly_room_db_v2';
-const CLEAN_MIGRATION_FLAG = 'moneyfly_cleared_initial_mock_v2';
+const ROOM_STORAGE_KEY = 'moneyfly_room_db_v3';
+const CLEAN_MIGRATION_FLAG = 'moneyfly_cleared_initial_mock_v3';
 
 export class RoomDatabaseEmulator {
   private static instance: RoomDatabaseEmulator;
@@ -35,6 +35,7 @@ export class RoomDatabaseEmulator {
       const isCleaned = localStorage.getItem(CLEAN_MIGRATION_FLAG);
       if (!isCleaned) {
         localStorage.removeItem('money_tracker_room_db_v1');
+        localStorage.removeItem('moneyfly_room_db_v2');
         localStorage.setItem(CLEAN_MIGRATION_FLAG, 'true');
         this.memoryCache = [];
         this.persist();
@@ -43,7 +44,20 @@ export class RoomDatabaseEmulator {
 
       const stored = localStorage.getItem(ROOM_STORAGE_KEY);
       if (stored) {
-        this.memoryCache = JSON.parse(stored);
+        const parsed = JSON.parse(stored);
+        if (Array.isArray(parsed)) {
+          this.memoryCache = parsed.map((item: any) => ({
+            ...item,
+            timestamp: typeof item.timestamp === 'number' && !isNaN(item.timestamp) ? item.timestamp : Date.now(),
+            amount: typeof item.amount === 'number' && !isNaN(item.amount) ? item.amount : 0,
+            categoryId: item.categoryId || 'cat_other',
+            categoryName: item.categoryName || item.category || 'General',
+            categoryIcon: item.categoryIcon || 'MoreHorizontal',
+            categoryColor: item.categoryColor || '#6B7280',
+          }));
+        } else {
+          this.memoryCache = [];
+        }
       } else {
         this.memoryCache = [];
         this.persist();
@@ -121,6 +135,23 @@ export class RoomDatabaseEmulator {
     }
   }
 
+  public async clearAll(): Promise<void> {
+    const user = auth.currentUser;
+    if (user && !user.isAnonymous) {
+      try {
+        const colRef = collection(db, 'users', user.uid, 'transactions');
+        const snapshot = await getDocs(colRef);
+        const batch = writeBatch(db);
+        snapshot.forEach(d => batch.delete(d.ref));
+        await batch.commit();
+      } catch (err) {
+        console.warn('Firestore clear all error:', err);
+      }
+    }
+    this.memoryCache = [];
+    this.persist();
+  }
+
   public async syncWithFirebase(userId: string): Promise<{ pushed: number; pulled: number }> {
     let pushed = 0;
     let pulled = 0;
@@ -171,11 +202,6 @@ export class RoomDatabaseEmulator {
       console.error('Sync error:', e);
       throw e;
     }
-  }
-
-  public clearAll(): void {
-    this.memoryCache = [];
-    this.persist();
   }
 
   public resetSampleData(): void {

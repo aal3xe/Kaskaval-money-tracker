@@ -14,9 +14,13 @@ import {
   BarChart3,
   PieChart,
   Download,
-  Smartphone
+  Smartphone,
+  Coins,
+  Trash2,
+  AlertTriangle
 } from 'lucide-react';
 import { Language, TRANSLATIONS } from '../i18n';
+import { CurrencyCode, CURRENCIES } from '../utils/currency';
 
 export type ChartStyle = 'categories' | 'linear';
 
@@ -27,6 +31,9 @@ interface AuthDrawerProps {
   onLanguageChange: (newLang: Language) => void;
   chartStyle: ChartStyle;
   onChartStyleChange: (style: ChartStyle) => void;
+  currency: CurrencyCode;
+  onCurrencyChange: (currency: CurrencyCode) => void;
+  onClearAllData: () => void;
 }
 
 export const AuthDrawer: React.FC<AuthDrawerProps> = ({
@@ -36,10 +43,14 @@ export const AuthDrawer: React.FC<AuthDrawerProps> = ({
   onLanguageChange,
   chartStyle,
   onChartStyleChange,
+  currency,
+  onCurrencyChange,
+  onClearAllData,
 }) => {
   const { user, loginWithGoogle, loginAsGuest, logout, syncStatus, syncNow, lastSyncTime } = useAuth();
   const [authError, setAuthError] = useState<string | null>(null);
   const [isProcessing, setIsProcessing] = useState(false);
+  const [showClearConfirm, setShowClearConfirm] = useState(false);
 
   const t = TRANSLATIONS[lang];
 
@@ -258,6 +269,46 @@ export const AuthDrawer: React.FC<AuthDrawerProps> = ({
             </div>
           </div>
 
+          {/* Currency Selection inside Drawer */}
+          <div className="mt-6 pt-5 border-t border-slate-200 dark:border-slate-800">
+            <div className="flex items-center justify-between mb-2">
+              <span className="text-xs font-semibold text-slate-700 dark:text-slate-300 flex items-center gap-1.5">
+                <Coins size={14} className="text-indigo-500" />
+                <span>{t.currencySetting}</span>
+              </span>
+              <span className="text-[11px] font-bold text-indigo-600 bg-indigo-50 dark:bg-indigo-950/60 px-2 py-0.5 rounded-md">
+                {currency} ({CURRENCIES[currency]?.symbol})
+              </span>
+            </div>
+            <p className="text-[11px] text-slate-400 mb-2.5">{t.currencySubtitle}</p>
+            <div className="grid grid-cols-2 gap-2">
+              {(Object.keys(CURRENCIES) as CurrencyCode[]).map((cCode) => {
+                const item = CURRENCIES[cCode];
+                const isSelected = currency === cCode;
+                return (
+                  <button
+                    key={cCode}
+                    id={`drawer-currency-${cCode.toLowerCase()}-btn`}
+                    onClick={() => onCurrencyChange(cCode)}
+                    className={`p-2.5 rounded-xl text-xs font-semibold flex items-center justify-between transition-all border ${
+                      isSelected
+                        ? 'bg-indigo-50 dark:bg-indigo-950/40 border-indigo-500 text-indigo-700 dark:text-indigo-300 shadow-2xs'
+                        : 'bg-slate-50 dark:bg-slate-800/60 border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:border-slate-300'
+                    }`}
+                  >
+                    <div className="flex items-center gap-2">
+                      <span className="text-base">{item.flag}</span>
+                      <span>{cCode}</span>
+                    </div>
+                    <span className="text-[11px] font-bold text-slate-400">
+                      {item.symbol}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
           {/* Language Selection inside Drawer */}
           <div className="mt-6 pt-5 border-t border-slate-200 dark:border-slate-800">
             <div className="flex items-center justify-between mb-2">
@@ -290,6 +341,46 @@ export const AuthDrawer: React.FC<AuthDrawerProps> = ({
                 <span>🇬🇧 English</span>
               </button>
             </div>
+          </div>
+
+          {/* Reset / Clear Data (Start from 0) */}
+          <div className="mt-6 pt-5 border-t border-slate-200 dark:border-slate-800">
+            {!showClearConfirm ? (
+              <button
+                id="drawer-clear-all-data-btn"
+                onClick={() => setShowClearConfirm(true)}
+                className="w-full flex items-center justify-center gap-2 p-2.5 rounded-xl border border-rose-200 dark:border-rose-900/50 bg-rose-50/70 dark:bg-rose-950/20 text-rose-600 dark:text-rose-400 hover:bg-rose-100 text-xs font-semibold transition-all"
+              >
+                <Trash2 size={14} />
+                <span>{t.clearAllData}</span>
+              </button>
+            ) : (
+              <div className="p-3 bg-rose-50 dark:bg-rose-950/30 border border-rose-200 dark:border-rose-900/60 rounded-xl space-y-2.5">
+                <div className="flex items-center gap-2 text-rose-700 dark:text-rose-300 text-xs font-semibold">
+                  <AlertTriangle size={15} className="shrink-0 text-rose-500" />
+                  <span>{t.clearAllConfirm}</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <button
+                    id="confirm-clear-all-btn"
+                    onClick={() => {
+                      onClearAllData();
+                      setShowClearConfirm(false);
+                      onClose();
+                    }}
+                    className="flex-1 py-1.5 bg-rose-600 hover:bg-rose-700 text-white rounded-lg text-xs font-bold transition-all shadow-xs"
+                  >
+                    {lang === 'ro' ? 'Da, resetează la 0' : 'Yes, reset to 0'}
+                  </button>
+                  <button
+                    onClick={() => setShowClearConfirm(false)}
+                    className="px-3 py-1.5 bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-200 rounded-lg text-xs font-medium hover:bg-slate-300 transition-all"
+                  >
+                    {lang === 'ro' ? 'Anulează' : 'Cancel'}
+                  </button>
+                </div>
+              </div>
+            )}
           </div>
 
           {/* Install MoneyFly native button */}

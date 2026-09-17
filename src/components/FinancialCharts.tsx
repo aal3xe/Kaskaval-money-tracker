@@ -67,10 +67,15 @@ export const FinancialCharts: React.FC<FinancialChartsProps> = ({
   }
 
   transactions.forEach(tx => {
-    const d = new Date(tx.timestamp).toISOString().split('T')[0];
-    if (daysMap[d]) {
-      if (tx.type === 'income') daysMap[d].income += tx.amount;
-      else daysMap[d].expense += tx.amount;
+    try {
+      const timeMs = typeof tx.timestamp === 'number' && !isNaN(tx.timestamp) ? tx.timestamp : Date.now();
+      const d = new Date(timeMs).toISOString().split('T')[0];
+      if (daysMap[d]) {
+        if (tx.type === 'income') daysMap[d].income += (tx.amount || 0);
+        else daysMap[d].expense += (tx.amount || 0);
+      }
+    } catch {
+      // Ignore invalid date entry safely
     }
   });
 
