@@ -1,7 +1,26 @@
 {
   "name": "kaskaval",
-  "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "description": "Kaskaval - Smart personal finance tracker with offline-first Room DB, Firebase Cloud sync, and dark obsidian aesthetic.",
+  "homepage": "https://kaskaval.online",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alex3adrian/kaskaval.git"
+  },
+  "keywords": [
+    "personal-finance",
+    "budget-tracker",
+    "money-tracker",
+    "pwa",
+    "offline-first",
+    "firebase",
+    "room-db",
+    "react",
+    "typescript",
+    "tailwindcss"
+  ],
+  "author": "alex3adrian",
+  "license": "MIT",
   "type": "module",
   "scripts": {
     "dev": "vite --port=3000 --host=0.0.0.0",

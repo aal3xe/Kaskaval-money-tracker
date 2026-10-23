@@ -44,7 +44,7 @@ export const CURRENCIES: Record<CurrencyCode, CurrencyConfig> = {
   },
 };
 
-export const DEFAULT_CURRENCY: CurrencyCode = 'RON';
+export const DEFAULT_CURRENCY: CurrencyCode = 'USD';
 
 const STORAGE_KEY = 'kaskaval_selected_currency';
 const LEGACY_STORAGE_KEY = 'moneyfly_selected_currency';
@@ -71,11 +71,12 @@ export function setStoredCurrency(code: CurrencyCode): void {
 
 export function formatMoney(
   amount: number,
-  currency: CurrencyCode = 'RON',
-  options: { showSign?: boolean; signOnlyIfNegative?: boolean } = {}
+  currency: CurrencyCode = DEFAULT_CURRENCY,
+  options: { showSign?: boolean; signOnlyIfNegative?: boolean; lang?: string } = {}
 ): string {
-  const config = CURRENCIES[currency] || CURRENCIES.RON;
-  const absVal = Math.abs(amount).toLocaleString('ro-RO', {
+  const config = CURRENCIES[currency] || CURRENCIES[DEFAULT_CURRENCY];
+  const locale = options.lang === 'ro' ? 'ro-RO' : 'en-US';
+  const absVal = Math.abs(amount).toLocaleString(locale, {
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,
   });

@@ -1,138 +1,163 @@
 <p align="center">
-  <img src="public/banner.jpg" alt="Kaskaval Hero Banner - kaskaval.online" width="100%" style="border-radius: 16px; max-width: 850px; box-shadow: 0 10px 30px rgba(0,0,0,0.15);" />
+  <img src="public/banner.jpg" alt="Kaskaval Hero Banner - kaskaval.online" width="100%" style="border-radius: 16px; max-width: 850px; box-shadow: 0 10px 30px rgba(0,0,0,0.25);" />
 </p>
 
-<h1 align="center">🧀 Kaskaval · <a href="https://kaskaval.online">kaskaval.online</a></h1>
+<h1 align="center">🧀 Kaskaval</h1>
 
 <p align="center">
   <strong>Smart, Minimalist Personal Finance Tracker & Budget Planner</strong><br>
-  <em>Clean Material 3 UI • Offline-First Persistence • Firebase Cloud Sync • Progressive Web App (PWA)</em><br>
-  🌐 <strong>Official Website:</strong> <a href="https://kaskaval.online">https://kaskaval.online</a>
+  <em>Clean Architecture • Offline-First Persistence • Firebase Cloud Sync • Progressive Web App (PWA)</em><br>
+  🌐 <strong>Live Application:</strong> <a href="https://kaskaval.online">https://kaskaval.online</a>
 </p>
 
 <p align="center">
   <a href="https://kaskaval.online"><img src="https://img.shields.io/badge/Website-kaskaval.online-F3C77C?style=flat-square&logo=googlechrome&logoColor=black" alt="Website" /></a>
+  <img src="https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square" alt="License: MIT" />
   <img src="https://img.shields.io/badge/Platform-Android%20%7C%20iOS%20%7C%20Web-4F46E5?style=flat-square" alt="Platform" />
-  <img src="https://img.shields.io/badge/Architecture-Clean%20%26%20Offline--First-10B981?style=flat-square" alt="Architecture" />
-  <img src="https://img.shields.io/badge/React-18.3-61DAFB?style=flat-square&logo=react" alt="React" />
-  <img src="https://img.shields.io/badge/Vite-6.x-646CFF?style=flat-square&logo=vite" alt="Vite" />
-  <img src="https://img.shields.io/badge/Tailwind-CSS-38B2AC?style=flat-square&logo=tailwind-css" alt="Tailwind" />
-  <img src="https://img.shields.io/badge/Firebase-Firestore%20%26%20Auth-FFCA28?style=flat-square&logo=firebase" alt="Firebase" />
-  <img src="https://img.shields.io/badge/PWA-Ready-F59E0B?style=flat-square" alt="PWA" />
+  <img src="https://img.shields.io/badge/Architecture-Offline--First%20%26%20Clean-10B981?style=flat-square" alt="Architecture" />
+  <img src="https://img.shields.io/badge/React-19-61DAFB?style=flat-square&logo=react" alt="React" />
+  <img src="https://img.shields.io/badge/TypeScript-5.8-3178C6?style=flat-square&logo=typescript" alt="TypeScript" />
+  <img src="https://img.shields.io/badge/Tailwind-CSS%20v4-38B2AC?style=flat-square&logo=tailwind-css" alt="Tailwind" />
+  <img src="https://img.shields.io/badge/Firebase-Auth%20%26%20Firestore-FFCA28?style=flat-square&logo=firebase" alt="Firebase" />
+  <img src="https://img.shields.io/badge/PWA-Installable-F59E0B?style=flat-square" alt="PWA" />
 </p>
 
 ---
 
-## 🌟 Despre Kaskaval (Overview)
+## 🌟 Overview
 
-**Kaskaval** ([kaskaval.online](https://kaskaval.online)) este o aplicație modernă de gestiune a finanțelor personale, concepută pentru a fi rapidă, intuitivă și plăcută la utilizare zilnică. Inspirată din principiile de design **Material 3 / Jetpack Compose**, aplicația combină simplitatea vizuală cu o arhitectură robustă: funcționează perfect offline și sincronizează automat datele în cloud atunci când ești conectat.
+**Kaskaval** ([kaskaval.online](https://kaskaval.online)) is a fast, modern personal finance tracker engineered for effortless daily expense recording, clean visual analytics, and absolute reliability. Designed around the aesthetics of **dark obsidian and warm gold** with an Android Jetpack Compose inspired flair, Kaskaval combines offline-first local persistence with seamless Firebase cloud synchronization.
 
-Instalată pe ecranul telefonului ca **PWA (Progressive Web App)**, Kaskaval rulează **pe tot ecranul (fullscreen)**, fără bara de adrese a browserului, oferind senzația unei aplicații native descărcate din Google Play Store.
-
----
-
-## ✨ Funcționalități Cheie (Key Features)
-
-- 📱 **Experiență Nativă de Mobil (PWA)**: Se instalează direct pe ecranul telefonului cu iconiță dedicată, lansare instantanee și mod complet fără margini de browser.
-- ⚡ **Offline-First (Room DB Pattern)**: Fiecare tranzacție se salvează pe loc în memoria locală. Poți adăuga cheltuieli chiar și fără conexiune la internet.
-- ☁️ **Sincronizare Cloud & Google Auth**: Conectare sigură cu contul tău Google prin Firebase Authentication și stocare securizată în Google Cloud Firestore.
-- 📊 **Rapoarte Financiare Avansate**:
-  - **Grafic Inelar (Round)**: Proporția dintre venituri și cheltuieli cu indicator de excedent/deficit.
-  - **Grafic Liniar (Bars)**: Bare procentuale pentru fiecare categorie de cheltuieli (Chirie, Mâncare, Transport, etc.).
-  - **Evoluție pe 7 Zile**: Grafic dinamic al cheltuielilor zilnice pentru identificarea vârfurilor de consum.
-- 👆 **Gesturi Fluide (Swipe-to-Delete)**: Ștergerea tranzacțiilor prin glisare stânga/dreapta cu acțiune de *Undo* (anulare) de 5 secunde, identică cu experiența din Gmail.
-- 🌐 **Complet Bilingvă**: Schimbare instantanee între **Română** 🇷🇴 și **English** 🇬🇧 direct din meniu.
+Installed on your phone as a **Progressive Web App (PWA)**, Kaskaval runs in **edge-to-edge full-screen mode** without any browser address bar, providing the tactile feel and speed of a native app.
 
 ---
 
-## 💡 Sfaturi Practice pentru Bugetul Tău (Smart Financial Tips)
+## ✨ Key Features
 
-Aplicația este optimizată pentru a te ajuta să aplici principii financiare dovedite:
-
-### 1. Regula 50 / 30 / 20
-- **50% Nevoi (Needs)**: Chirie, utilități, mâncare de bază, transport.
-- **30% Dorințe (Wants)**: Ieșiri în oraș, hobby-uri, electronice, divertisment.
-- **20% Economii & Investiții (Savings)**: Fond de urgență, investiții pe termen lung.
-> *Sfat Kaskaval*: Urmărește bara de proporție din ecranul principal. Dacă cheltuielile depășesc 70% din venituri, verifică distribuția categoriilor pentru a găsi scurgerile de buget.
-
-### 2. „Plătește-te pe tine primul” (Pay Yourself First)
-- Imediat ce înregistrezi un venit, alocă o sumă direct către un cont de economii înainte de a începe cheltuielile lunare.
-
-### 3. Înregistrarea Zilnică a Micro-Cheltuielilor
-- Micile achiziții de impuls (cafea zilnică, gustări, abonamente uitate) adunate lunar pot reprezenta peste 15-20% din buget. Înregistrează-le pe loc în Kaskaval imediat ce ai plătit!
+- 📱 **Native Mobile Feel (PWA)**: Installs directly to your home screen with a dedicated launcher icon, instant startup, and zero browser chrome.
+- ⚡ **Offline-First (Room DB Pattern)**: Transactions save instantly to local storage. Log expenses seamlessly even without an internet connection or while traveling.
+- ☁️ **Cloud Sync & Google Auth**: One-tap secure login with Google via Firebase Authentication, with automatic real-time sync across all your devices using Google Cloud Firestore.
+- 📊 **Visual Financial Analytics**:
+  - **Dynamic Donut & Ratio Chart**: Live visualization of your Income vs. Expense ratio with real-time Surplus/Deficit calculation and monthly budget target monitoring.
+  - **7-Day Spending Evolution**: Daily expenditure trend bars with zero-baseline markers, scale references, and tap-to-inspect tooltips.
+  - **Category Breakdown**: Proportional horizontal progress bars for categories (Rent, Food & Dining, Transport, Entertainment, etc.).
+- 👆 **Fluid Gestures (Swipe-to-Delete)**: Delete transactions via left/right swipe with a 5-second Gmail-style **Undo** toast for accidental removals.
+- 💵 **Multi-Currency Ready**: Switch on the fly between **USD ($)**, **EUR (€)**, **GBP (£)**, and **RON (Romanian Leu)**.
+- 🌐 **Bilingual Support**: Instant toggle between **English** 🇬🇧 and **Romanian** 🇷🇴.
+- 🎯 **Clean Slate by Default**: Starts cleanly at **0.00** without hardcoded test noise, allowing every user to begin tracking their personal finances immediately.
 
 ---
 
-## 🛠️ Tehnologii Utilizate (Tech Stack)
+## 💡 Practical Budgeting Principles
 
-| Tehnologie | Rol |
+Kaskaval is built to support proven financial frameworks:
+
+### 1. The 50 / 30 / 20 Rule
+- **50% Needs**: Housing, utilities, groceries, transportation.
+- **30% Wants**: Dining out, hobbies, gadgets, entertainment.
+- **20% Savings & Investments**: Emergency fund, debt reduction, long-term wealth building.
+> *Kaskaval Tip*: Keep an eye on your Monthly Budget Overview card. If your spending exceeds 70% of income early in the month, check your category breakdown to pinpoint leaks.
+
+### 2. Pay Yourself First
+- Whenever new income is logged, immediately set aside a fixed percentage into your savings before starting discretionary monthly spending.
+
+### 3. Log Micro-Expenses Daily
+- Small, unnoticed purchases (daily coffee, snacks, forgotten recurring subscriptions) often total 15–20% of monthly income. Log them in Kaskaval the moment you pay.
+
+---
+
+## 🛠️ Tech Stack
+
+| Technology | Purpose |
 |---|---|
-| **React 18** | Bibliotecă declarativă pentru interfață |
-| **TypeScript** | Siguranță strictă a tipurilor de date |
-| **Vite** | Bundler ultra-rapid de ultimă generație |
-| **Tailwind CSS** | Stiluri moderne și responsive bazate pe utilitare |
-| **Firebase (Auth & Firestore)** | Autentificare Google și bază de date în Cloud |
-| **Service Worker & Web Manifest** | Suport PWA, cache offline și instalare mobilă |
-| **Lucide React** | Pictograme vectoriale optimizate |
-| **Canvas Confetti** | Animații vizuale festive la adăugarea de tranzacții |
+| **React 19** | Modern declarative UI with hooks and transitions |
+| **TypeScript 5.8** | Full static type safety and maintainable contracts |
+| **Vite 6** | Lightning-fast development server and optimized build bundling |
+| **Tailwind CSS v4** | Modern utility-first responsive styling |
+| **Firebase (Firestore & Auth)** | Google OAuth authentication and Cloud Firestore cloud backup |
+| **Service Worker & Web App Manifest** | PWA offline capability, caching, and home screen installation |
+| **Lucide React** | Clean, optimized vector icon set |
+| **Canvas Confetti** | Subtle celebratory animations when hitting financial milestones |
 
 ---
 
-## 🚀 Instalare și Rulare Locală (Local Setup)
+## 🚀 Getting Started (Local Development)
 
-Dacă vrei să rulezi proiectul pe calculatorul tău:
+Follow these steps to run Kaskaval locally on your machine:
 
-1. **Clonează repository-ul**:
-   ```bash
-   git clone https://github.com/alex3adrian/kaskaval.git
-   cd kaskaval
-   ```
+### Prerequisites
+- **Node.js** (v18.x or higher)
+- **npm** or **bun** / **yarn**
 
-   *Sau accesează direct versiunea live pe web:* **[https://kaskaval.online](https://kaskaval.online)**
+### 1. Clone the repository
+```bash
+git clone https://github.com/alex3adrian/kaskaval.git
+cd kaskaval
+```
 
-2. **Instalează dependențele**:
-   ```bash
-   npm install
-   ```
+*Or use the hosted version directly:* **[https://kaskaval.online](https://kaskaval.online)**
 
-3. **Pornește serverul local de dezvoltare**:
-   ```bash
-   npm run dev
-   ```
-   Deschide browserul la adresa indicată (de obicei `http://localhost:3000`).
+### 2. Install dependencies
+```bash
+npm install
+```
 
-4. **Construiește pentru producție**:
-   ```bash
-   npm run build
-   ```
+### 3. Start development server
+```bash
+npm run dev
+```
+Open your browser at `http://localhost:3000`.
 
----
-
-## 📲 Cum instalezi Kaskaval pe Telefon (PWA Guide)
-
-### Pe Android (Google Chrome)
-1. Deschide link-ul aplicației în **Chrome**.
-2. Apasă pe butonul **„Instalează”** afișat în partea de sus a aplicației (sau apasă pe cele 3 puncte **⋮** din dreapta-sus -> **„Instalează aplicația”**).
-3. Confirmă instalarea. Pe ecranul telefonului va apărea iconița **Kaskaval**.
-4. Deschide aplicația: va rula **pe tot ecranul, fără nicio bară de adresă sau butoane de browser**.
-
-### Pe iPhone / iOS (Safari)
-1. Deschide link-ul aplicației în **Safari**.
-2. Apasă pe butonul de Partajare (**Share** 📤 de la baza ecranului).
-3. Derulează în jos și alege **„Adaugă pe ecranul principal” (Add to Home Screen)**.
-4. Apasă **Add**. Kaskaval este acum gata pe ecranul tău principal!
+### 4. Build for production
+```bash
+npm run build
+```
+Production assets are generated in the `dist/` directory.
 
 ---
 
-## 🔒 Confidențialitate & Securitate (Privacy)
+## 📲 How to Install Kaskaval on Mobile (PWA Guide)
 
-- **Datele îți aparțin**: Tranzacțiile tale sunt salvate pe dispozitivul tău și legate strict de contul tău personal de Google.
-- **Fără partajare terță**: Nicio informație financiară nu este vândută sau partajată cu terți.
-- **Reguli de securitate Cloud**: Baza de date Firestore utilizează reguli stricte prin care fiecare utilizator își poate citi și modifica doar propriile documente.
+### On Android (Google Chrome)
+1. Navigate to **[kaskaval.online](https://kaskaval.online)** in **Chrome**.
+2. Tap the **Burger Menu (top right)** -> **"Install Application"** (or tap the **⋮** menu in Chrome -> **"Install app"** / **"Add to Home screen"**).
+3. Confirm the prompt. The **Kaskaval** icon will appear on your home screen and app drawer.
+4. Launching it opens the application in **standalone full-screen mode** without any browser controls.
+
+### On iPhone / iOS (Safari)
+1. Navigate to **[kaskaval.online](https://kaskaval.online)** in **Safari**.
+2. Tap the **Share** button (📤 at the bottom toolbar).
+3. Scroll down and select **"Add to Home Screen"**.
+4. Tap **Add**. Kaskaval is now installed on your iPhone home screen!
 
 ---
+
+## 🔒 Security & Privacy
+
+- **Your Data Stays Yours**: When using Guest Mode, your transactions reside exclusively in your device's local storage.
+- **Strict Firestore Security Rules**: Cloud Firestore rules enforce authenticated user scoping — users can only read, write, and delete their own records.
+- **No Third-Party Trackers**: No third-party ad networks or data brokerage integrations.
+
+---
+
+## 🤝 Contributing
+
+Contributions, feature requests, and bug reports are welcome!
+Feel free to open an issue or submit a pull request:
+
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+---
+
+## 📄 License
+
+Distributed under the **MIT License**. See `LICENSE` for more information.
 
 <p align="center">
-  Creat cu pasiune pentru independență financiară și design de calitate.<br>
-  <strong>Kaskaval © 2026</strong>
+  Crafted for financial clarity and clean software architecture.<br>
+  <strong><a href="https://kaskaval.online">Kaskaval</a> © 2026</strong>
 </p>

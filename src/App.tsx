@@ -18,12 +18,19 @@ import confetti from 'canvas-confetti';
 import { Analytics } from '@vercel/analytics/react';
 
 export function MoneyTrackerApp() {
-  // Primary language default to Romanian ('ro') with English ('en') toggle
+  // Primary language default to English ('en') with Romanian ('ro') toggle
   const [lang, setLang] = useState<Language>(() => {
-    return (localStorage.getItem('money_tracker_lang') as Language) || 'ro';
+    const migrated = localStorage.getItem('kaskaval_lang_default_en_v2');
+    if (!migrated) {
+      localStorage.setItem('kaskaval_lang_default_en_v2', 'true');
+      localStorage.setItem('money_tracker_lang', 'en');
+      return 'en';
+    }
+    const saved = localStorage.getItem('money_tracker_lang');
+    return (saved as Language) || 'en';
   });
 
-  // Currency selection defaulting to Romanian Leu ('RON')
+  // Currency selection defaulting to stored or USD
   const [currency, setCurrency] = useState<CurrencyCode>(() => getStoredCurrency());
 
   // Chart representation style preference: 'categories' (round) or 'linear' (straight bars)

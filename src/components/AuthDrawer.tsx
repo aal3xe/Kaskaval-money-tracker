@@ -294,17 +294,6 @@ export const AuthDrawer: React.FC<AuthDrawerProps> = ({
             </div>
             <div className="grid grid-cols-2 gap-2 bg-[#131926] p-1 rounded-xl border border-[#222E42]">
               <button
-                id="drawer-lang-ro-btn"
-                onClick={() => onLanguageChange('ro')}
-                className={`py-2 px-3 rounded-lg text-xs font-semibold flex items-center justify-center gap-1.5 transition-all ${
-                  lang === 'ro'
-                    ? 'bg-[#F3C77C] text-slate-950 shadow-xs font-bold'
-                    : 'text-slate-400 hover:text-slate-200'
-                }`}
-              >
-                <span>🇷🇴 Română</span>
-              </button>
-              <button
                 id="drawer-lang-en-btn"
                 onClick={() => onLanguageChange('en')}
                 className={`py-2 px-3 rounded-lg text-xs font-semibold flex items-center justify-center gap-1.5 transition-all ${
@@ -314,6 +303,17 @@ export const AuthDrawer: React.FC<AuthDrawerProps> = ({
                 }`}
               >
                 <span>🇬🇧 English</span>
+              </button>
+              <button
+                id="drawer-lang-ro-btn"
+                onClick={() => onLanguageChange('ro')}
+                className={`py-2 px-3 rounded-lg text-xs font-semibold flex items-center justify-center gap-1.5 transition-all ${
+                  lang === 'ro'
+                    ? 'bg-[#F3C77C] text-slate-950 shadow-xs font-bold'
+                    : 'text-slate-400 hover:text-slate-200'
+                }`}
+              >
+                <span>🇷🇴 Română</span>
               </button>
             </div>
           </div>
